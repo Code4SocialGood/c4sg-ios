@@ -46,22 +46,24 @@ A step by step series of examples that tell you have to get a development env ru
   
 3. Once XCode has been installed you're now ready to get going!
 
-Running the tests
-We are currently not running automated tests or tests yet as we are still getting started as we get ready to publish to the App store this will be explored further.
+Running Tests/Automated Testing
 
-Break down into end to end tests
-Explain what these tests test and why
-
-Contributing
-Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
+We are not currently running automated tests or tests yet as we are still getting started as we get ready to publish to the App store this will be explored further.
 
 Versioning
+
 GitHub is used for version control a basic knowledge of GitHub on how to create a branch, commit, and perform pull requests is not assumed and if you need help with these features please reach out to help on the Slack community channel for the cs4g-iOS project.
 
+Questions
+
+Please reach out to Brian Andreasen or anyone else if you have any feedback or have difficulties on getting started.
+Happy Coding!
 
 Authors
+
 Jenny - Initial work - PurpleBooth
 Brian Andreasen - Inital Project Setup and branch setup for development.
 
 Acknowledgments
+
 All of the contributors to this project deeserve a hats off and all deserve to e recognized a special thank you to Jenny for allowing people to grow, pursue their dreams and creating a platform that means something to many.
