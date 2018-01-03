@@ -72,7 +72,7 @@
 		1881747B1FFD45F300175527 /* Code4SocialGood */ = {
 			isa = PBXGroup;
 			children = (
-				188174931FFD467400175527 /* Supporting Files */,
+				1881748A1FFD45F300175527 /* Info.plist */,
 				188174921FFD465E00175527 /* Controller */,
 				188174911FFD465A00175527 /* View */,
 				188174901FFD465400175527 /* Model */,
@@ -105,14 +105,6 @@
 				1881747C1FFD45F300175527 /* AppDelegate.swift */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		188174931FFD467400175527 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				1881748A1FFD45F300175527 /* Info.plist */,
-			);
-			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		3F17EF5EDFDFF946A8CABBFB /* Frameworks */ = {
