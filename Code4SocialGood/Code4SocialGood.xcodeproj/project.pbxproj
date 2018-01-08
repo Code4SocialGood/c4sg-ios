@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		1881747D1FFD45F300175527 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1881747C1FFD45F300175527 /* AppDelegate.swift */; };
-		1881747F1FFD45F300175527 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1881747E1FFD45F300175527 /* FirstViewController.swift */; };
-		188174811FFD45F300175527 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188174801FFD45F300175527 /* SecondViewController.swift */; };
+		1881747F1FFD45F300175527 /* ProjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1881747E1FFD45F300175527 /* ProjectsViewController.swift */; };
+		188174811FFD45F300175527 /* OrganizationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188174801FFD45F300175527 /* OrganizationsViewController.swift */; };
 		188174841FFD45F300175527 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188174821FFD45F300175527 /* Main.storyboard */; };
 		188174861FFD45F300175527 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 188174851FFD45F300175527 /* Assets.xcassets */; };
 		188174891FFD45F300175527 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188174871FFD45F300175527 /* LaunchScreen.storyboard */; };
+		B64C131B2003E2210019E3B6 /* VolunteersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64C131A2003E2210019E3B6 /* VolunteersViewController.swift */; };
 		C0CC2F7D7F2E08435EBD743D /* Pods_Code4SocialGood.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C907A1E84CA5DB4F274C63D7 /* Pods_Code4SocialGood.framework */; };
 /* End PBXBuildFile section */
 
@@ -20,13 +21,14 @@
 		0CD822F0BE43E94D57038E44 /* Pods-Code4SocialGood.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Code4SocialGood.release.xcconfig"; path = "Pods/Target Support Files/Pods-Code4SocialGood/Pods-Code4SocialGood.release.xcconfig"; sourceTree = "<group>"; };
 		188174791FFD45F300175527 /* Code4SocialGood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Code4SocialGood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1881747C1FFD45F300175527 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1881747E1FFD45F300175527 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		188174801FFD45F300175527 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		1881747E1FFD45F300175527 /* ProjectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsViewController.swift; sourceTree = "<group>"; };
+		188174801FFD45F300175527 /* OrganizationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationsViewController.swift; sourceTree = "<group>"; };
 		188174831FFD45F300175527 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		188174851FFD45F300175527 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		188174881FFD45F300175527 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1881748A1FFD45F300175527 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0B26D9E4D32ED62163B8FD9 /* Pods-Code4SocialGood.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Code4SocialGood.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Code4SocialGood/Pods-Code4SocialGood.debug.xcconfig"; sourceTree = "<group>"; };
+		B64C131A2003E2210019E3B6 /* VolunteersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteersViewController.swift; sourceTree = "<group>"; };
 		C907A1E84CA5DB4F274C63D7 /* Pods_Code4SocialGood.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Code4SocialGood.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -75,17 +77,10 @@
 				1881748A1FFD45F300175527 /* Info.plist */,
 				188174921FFD465E00175527 /* Controller */,
 				188174911FFD465A00175527 /* View */,
-				188174901FFD465400175527 /* Model */,
+				B62D479E2003DF3800CAEC6D /* Model */,
 				188174851FFD45F300175527 /* Assets.xcassets */,
 			);
 			path = Code4SocialGood;
-			sourceTree = "<group>";
-		};
-		188174901FFD465400175527 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		188174911FFD465A00175527 /* View */ = {
@@ -100,8 +95,9 @@
 		188174921FFD465E00175527 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1881747E1FFD45F300175527 /* FirstViewController.swift */,
-				188174801FFD45F300175527 /* SecondViewController.swift */,
+				1881747E1FFD45F300175527 /* ProjectsViewController.swift */,
+				188174801FFD45F300175527 /* OrganizationsViewController.swift */,
+				B64C131A2003E2210019E3B6 /* VolunteersViewController.swift */,
 				1881747C1FFD45F300175527 /* AppDelegate.swift */,
 			);
 			path = Controller;
@@ -113,6 +109,13 @@
 				C907A1E84CA5DB4F274C63D7 /* Pods_Code4SocialGood.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B62D479E2003DF3800CAEC6D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,9 +249,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				188174811FFD45F300175527 /* SecondViewController.swift in Sources */,
+				188174811FFD45F300175527 /* OrganizationsViewController.swift in Sources */,
 				1881747D1FFD45F300175527 /* AppDelegate.swift in Sources */,
-				1881747F1FFD45F300175527 /* FirstViewController.swift in Sources */,
+				1881747F1FFD45F300175527 /* ProjectsViewController.swift in Sources */,
+				B64C131B2003E2210019E3B6 /* VolunteersViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
