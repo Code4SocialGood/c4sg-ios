@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Projects-->
+        <scene sceneID="hNz-n2-bh7">
+            <objects>
+                <viewController id="9pv-A4-QxB" customClass="FirstViewController" customModule="Code4SocialGood" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U73-HF-sIG">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <string key="placeholder" base64-UTF8="YES">
+FlNlYXJjaCBQcm9qZWN0cw
+</string>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="9pv-A4-QxB" id="vjT-bm-Uju"/>
+                                </connections>
+                            </searchBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Projects View" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dfT-O9-GrU">
+                                <rect key="frame" x="74" y="308" width="226" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Projects" image="first" id="acW-dT-cKf"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="40y-ZU-QIA" id="0yL-Xq-o9J"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="40y-ZU-QIA">
+                    <connections>
+                        <outlet property="delegate" destination="9pv-A4-QxB" id="ztE-kP-p14"/>
+                        <outlet property="searchBar" destination="U73-HF-sIG" id="iUS-OI-WaW"/>
+                        <outlet property="searchContentsController" destination="9pv-A4-QxB" id="Q4g-g9-yAT"/>
+                        <outlet property="searchResultsDataSource" destination="9pv-A4-QxB" id="Uz2-86-Q4m"/>
+                        <outlet property="searchResultsDelegate" destination="9pv-A4-QxB" id="0Oz-V8-hjU"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="749.60000000000002" y="-320.68965517241384"/>
+        </scene>
+        <!--Organizations-->
+        <scene sceneID="wg7-f3-ORb">
+            <objects>
+                <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="Code4SocialGood" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search Organizations" translatesAutoresizingMaskIntoConstraints="NO" id="l2Z-UG-yYc">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="8rJ-Kc-sve" id="J7A-O3-l4M"/>
+                                </connections>
+                            </searchBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="OrganizationsView" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jx-iJ-kRF">
+                                <rect key="frame" x="44" y="310" width="287" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Organizations" image="second" id="cPa-gy-q4n"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="utN-YN-Phn" id="Cxm-tH-tm9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="kwQ-Pk-Igo">
+                    <connections>
+                        <outlet property="delegate" destination="8rJ-Kc-sve" id="5Ja-Nd-CJa"/>
+                        <outlet property="searchBar" destination="cs9-fd-HjS" id="TA6-Jo-CZ6"/>
+                        <outlet property="searchContentsController" destination="8rJ-Kc-sve" id="9ez-0p-rJd"/>
+                        <outlet property="searchResultsDataSource" destination="8rJ-Kc-sve" id="ytJ-yb-saY"/>
+                        <outlet property="searchResultsDelegate" destination="8rJ-Kc-sve" id="ce5-Ek-M45"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="utN-YN-Phn">
+                    <connections>
+                        <outlet property="delegate" destination="8rJ-Kc-sve" id="J9n-gC-aFj"/>
+                        <outlet property="searchBar" destination="l2Z-UG-yYc" id="FPH-q5-nhg"/>
+                        <outlet property="searchContentsController" destination="8rJ-Kc-sve" id="zhf-zz-gBk"/>
+                        <outlet property="searchResultsDataSource" destination="8rJ-Kc-sve" id="Q9e-PZ-47C"/>
+                        <outlet property="searchResultsDelegate" destination="8rJ-Kc-sve" id="gfl-d5-XTG"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="1482" y="-321"/>
+        </scene>
+        <!--Volunteers-->
+        <scene sceneID="6mF-eh-OW4">
+            <objects>
+                <viewController id="HCz-9f-NpT" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mJj-0u-zLY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X33-Nm-MAk">
+                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <tabBarItem systemItem="favorites" id="png-IO-JPM"/>
+                                    <tabBarItem systemItem="more" id="1Kp-WZ-GLX"/>
+                                </items>
+                            </tabBar>
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search Volunteers" translatesAutoresizingMaskIntoConstraints="NO" id="cs9-fd-HjS">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="8rJ-Kc-sve" id="BWe-gz-PjP"/>
+                                </connections>
+                            </searchBar>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" text="VolunteersView" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5">
+                                <rect key="frame" x="69" y="312" width="237" height="43"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" constant="95" id="A5y-b5-J6N"/>
+                            <constraint firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" constant="-15" id="FAn-b4-4ZS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ZXf-il-TJQ"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Volunteers" id="viW-bz-dKF"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="YAZ-w4-aoJ" id="CDE-NB-EuI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3JX-Np-4Ju" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="YAZ-w4-aoJ">
+                    <connections>
+                        <outlet property="delegate" destination="HCz-9f-NpT" id="qqm-Of-mJ1"/>
+                        <outlet property="searchContentsController" destination="HCz-9f-NpT" id="xiq-Au-0Ct"/>
+                        <outlet property="searchResultsDataSource" destination="HCz-9f-NpT" id="KKa-wL-d4p"/>
+                        <outlet property="searchResultsDelegate" destination="HCz-9f-NpT" id="wFC-dW-Dri"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="2224.8000000000002" y="-321.58920539730138"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="yl2-sM-qoP">
+            <objects>
+                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
+                        <rect key="frame" x="0.0" y="975" width="768" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
+                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="HCz-9f-NpT" kind="relationship" relationship="viewControllers" id="Ic5-HO-am4"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-50" y="-321"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="first" width="30" height="30"/>
+        <image name="second" width="30" height="30"/>
+    </resources>
+</document>
