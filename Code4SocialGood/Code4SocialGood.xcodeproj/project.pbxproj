@@ -74,33 +74,12 @@
 		1881747B1FFD45F300175527 /* Code4SocialGood */ = {
 			isa = PBXGroup;
 			children = (
-				1881748A1FFD45F300175527 /* Info.plist */,
-				188174921FFD465E00175527 /* Controller */,
-				188174911FFD465A00175527 /* View */,
-				B62D479E2003DF3800CAEC6D /* Model */,
-				188174851FFD45F300175527 /* Assets.xcassets */,
+				B6744AAA2004FCEC00E0A448 /* Controller */,
+				B6744AAB2004FCF400E0A448 /* View */,
+				B6744AAD2004FD1000E0A448 /* Model */,
+				B6744AAE2004FD1E00E0A448 /* Supporting Files */,
 			);
 			path = Code4SocialGood;
-			sourceTree = "<group>";
-		};
-		188174911FFD465A00175527 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				188174821FFD45F300175527 /* Main.storyboard */,
-				188174871FFD45F300175527 /* LaunchScreen.storyboard */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		188174921FFD465E00175527 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				1881747E1FFD45F300175527 /* ProjectsViewController.swift */,
-				188174801FFD45F300175527 /* OrganizationsViewController.swift */,
-				B64C131A2003E2210019E3B6 /* VolunteersViewController.swift */,
-				1881747C1FFD45F300175527 /* AppDelegate.swift */,
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		3F17EF5EDFDFF946A8CABBFB /* Frameworks */ = {
@@ -111,11 +90,48 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		B62D479E2003DF3800CAEC6D /* Model */ = {
+		B6744AAA2004FCEC00E0A448 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1881747E1FFD45F300175527 /* ProjectsViewController.swift */,
+				188174801FFD45F300175527 /* OrganizationsViewController.swift */,
+				B64C131A2003E2210019E3B6 /* VolunteersViewController.swift */,
+				1881747C1FFD45F300175527 /* AppDelegate.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		B6744AAB2004FCF400E0A448 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				188174821FFD45F300175527 /* Main.storyboard */,
+				188174871FFD45F300175527 /* LaunchScreen.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		B6744AAD2004FD1000E0A448 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Model;
+			name = Model;
+			sourceTree = "<group>";
+		};
+		B6744AAE2004FD1E00E0A448 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B6744AAF2004FD2500E0A448 /* Images */,
+				1881748A1FFD45F300175527 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B6744AAF2004FD2500E0A448 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				188174851FFD45F300175527 /* Assets.xcassets */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
