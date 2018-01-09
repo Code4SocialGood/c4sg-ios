@@ -6,6 +6,7 @@ target 'Code4SocialGood' do
   use_frameworks!
 
   # Pods for Code4SocialGood
-    pod 'Alamofire'
-    pod 'SwiftyJSON'
+  pod 'Alamofire', '4.5.1'
+  pod 'SwiftyJSON', '4.0.0'
+  pod 'ObjectMapper', '3.1.0'
 end

@@ -13,7 +13,13 @@
 		188174841FFD45F300175527 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188174821FFD45F300175527 /* Main.storyboard */; };
 		188174861FFD45F300175527 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 188174851FFD45F300175527 /* Assets.xcassets */; };
 		188174891FFD45F300175527 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188174871FFD45F300175527 /* LaunchScreen.storyboard */; };
+		B63D0ED92005087500A594A5 /* Skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63D0ED82005087500A594A5 /* Skill.swift */; };
 		B64C131B2003E2210019E3B6 /* VolunteersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64C131A2003E2210019E3B6 /* VolunteersViewController.swift */; };
+		B6C0DB0D200503DD00950769 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C0DB0C200503DD00950769 /* Organization.swift */; };
+		B6C0DB0F2005068F00950769 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C0DB0E2005068F00950769 /* Project.swift */; };
+		B6C0DB112005076300950769 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C0DB102005076300950769 /* User.swift */; };
+		B6C0DB13200507F400950769 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C0DB12200507F400950769 /* Story.swift */; };
+		B6D99A66200514D600092E2F /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D99A65200514D600092E2F /* APIManager.swift */; };
 		C0CC2F7D7F2E08435EBD743D /* Pods_Code4SocialGood.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C907A1E84CA5DB4F274C63D7 /* Pods_Code4SocialGood.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,7 +34,13 @@
 		188174881FFD45F300175527 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1881748A1FFD45F300175527 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0B26D9E4D32ED62163B8FD9 /* Pods-Code4SocialGood.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Code4SocialGood.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Code4SocialGood/Pods-Code4SocialGood.debug.xcconfig"; sourceTree = "<group>"; };
+		B63D0ED82005087500A594A5 /* Skill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skill.swift; sourceTree = "<group>"; };
 		B64C131A2003E2210019E3B6 /* VolunteersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteersViewController.swift; sourceTree = "<group>"; };
+		B6C0DB0C200503DD00950769 /* Organization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
+		B6C0DB0E2005068F00950769 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		B6C0DB102005076300950769 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B6C0DB12200507F400950769 /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
+		B6D99A65200514D600092E2F /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		C907A1E84CA5DB4F274C63D7 /* Pods_Code4SocialGood.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Code4SocialGood.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -77,6 +89,7 @@
 				B6744AAA2004FCEC00E0A448 /* Controller */,
 				B6744AAB2004FCF400E0A448 /* View */,
 				B6744AAD2004FD1000E0A448 /* Model */,
+				B6D99A64200514C400092E2F /* Managers */,
 				B6744AAE2004FD1E00E0A448 /* Supporting Files */,
 			);
 			path = Code4SocialGood;
@@ -113,6 +126,11 @@
 		B6744AAD2004FD1000E0A448 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B6C0DB0C200503DD00950769 /* Organization.swift */,
+				B6C0DB0E2005068F00950769 /* Project.swift */,
+				B63D0ED82005087500A594A5 /* Skill.swift */,
+				B6C0DB12200507F400950769 /* Story.swift */,
+				B6C0DB102005076300950769 /* User.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -132,6 +150,14 @@
 				188174851FFD45F300175527 /* Assets.xcassets */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		B6D99A64200514C400092E2F /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				B6D99A65200514D600092E2F /* APIManager.swift */,
+			);
+			name = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,11 +239,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Code4SocialGood/Pods-Code4SocialGood-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -267,8 +295,14 @@
 			files = (
 				188174811FFD45F300175527 /* OrganizationsViewController.swift in Sources */,
 				1881747D1FFD45F300175527 /* AppDelegate.swift in Sources */,
+				B6D99A66200514D600092E2F /* APIManager.swift in Sources */,
 				1881747F1FFD45F300175527 /* ProjectsViewController.swift in Sources */,
+				B63D0ED92005087500A594A5 /* Skill.swift in Sources */,
+				B6C0DB0D200503DD00950769 /* Organization.swift in Sources */,
 				B64C131B2003E2210019E3B6 /* VolunteersViewController.swift in Sources */,
+				B6C0DB0F2005068F00950769 /* Project.swift in Sources */,
+				B6C0DB112005076300950769 /* User.swift in Sources */,
+				B6C0DB13200507F400950769 /* Story.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
