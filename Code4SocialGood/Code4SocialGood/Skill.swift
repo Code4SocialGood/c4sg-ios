@@ -6,15 +6,21 @@
 //  Copyright © 2018 Code 4 Social Good. All rights reserved.
 //
 
+import CoreData
 import ObjectMapper
 
-class Skill: Mappable {
+class Skill: NSManagedObject, MappableEntity {
 
     var id: Int!
     var skillName: String?
     
+    
     required init?(map: Map) {
-        
+        super.init(entity: NSEntityDescription(), insertInto: nil)
+    }
+    
+    required init?(_ map: Map, entityName: String?, managedObjectContext: NSManagedObjectContext?) {
+        super.init(entity: NSEntityDescription.entity(forEntityName: entityName!, in: managedObjectContext!)!, insertInto: nil)
     }
     
     // Mappable
