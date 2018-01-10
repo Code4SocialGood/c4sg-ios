@@ -8,6 +8,8 @@
 
 import ObjectMapper
 
+// TODO: Conform Project to a NSManagedObject through the MappableEntity protocol when we move to Core Data.
+
 class Project: Mappable {
 
     var city: String?

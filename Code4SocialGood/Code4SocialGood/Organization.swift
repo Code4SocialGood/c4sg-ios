@@ -8,6 +8,8 @@
 
 import ObjectMapper
 
+// TODO: Conform Organization to a NSManagedObject through the MappableEntity protocol when we move to Core Data.
+
 class Organization: Mappable {
     
     var address1: String?
