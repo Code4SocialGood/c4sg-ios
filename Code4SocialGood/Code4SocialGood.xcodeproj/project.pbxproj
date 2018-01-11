@@ -84,11 +84,11 @@
 		1860C6612006A9E0001D08D5 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				1860C65320069D12001D08D5 /* OrganizationProtocol.swift */,
 				1860C65D20069ED0001D08D5 /* ProjectProtocol.swift */,
-				1860C65B20069E9E001D08D5 /* UserProtocol.swift */,
 				1860C65720069D5D001D08D5 /* StoryProtocol.swift */,
 				1860C65520069D39001D08D5 /* SkillProtocol.swift */,
-				1860C65320069D12001D08D5 /* OrganizationProtocol.swift */,
+				1860C65B20069E9E001D08D5 /* UserProtocol.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
