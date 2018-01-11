@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17C205" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Organization" representedClassName="Organization" syncable="YES">
+        <attribute name="address1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="address2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="attribute" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contactEmail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contactName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contactPhone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contactTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ein" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="facebookUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="linkedinUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="logoUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="organizationDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="projectUpdatedTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="twitterUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="websiteUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="zip" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Project" representedClassName="Project" syncable="YES">
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="imageUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="jobTitleId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="organizationId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="organizationLogoUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="organizationName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="projectDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="remoteFlag" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedTime" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Skill" representedClassName="Skill" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="skillName" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Story" representedClassName="Story" syncable="YES">
+        <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="imageUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="avatarUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="chatUsername" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="facebookUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="githubUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="introduction" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="jobTitleId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="linkedinUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="notifyFlag" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="personalUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="publishFlag" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="resumeUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="role" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="twitterUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Organization" positionX="-63" positionY="-18" width="128" height="435"/>
+        <element name="Project" positionX="-54" positionY="144" width="128" height="270"/>
+        <element name="Skill" positionX="-36" positionY="153" width="128" height="75"/>
+        <element name="Story" positionX="-18" positionY="162" width="128" height="135"/>
+        <element name="User" positionX="0" positionY="171" width="128" height="450"/>
+    </elements>
+</model>

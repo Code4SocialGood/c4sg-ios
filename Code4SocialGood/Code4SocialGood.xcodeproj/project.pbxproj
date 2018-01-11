@@ -20,6 +20,7 @@
 		188174891FFD45F300175527 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188174871FFD45F300175527 /* LaunchScreen.storyboard */; };
 		B63D0ED92005087500A594A5 /* Skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63D0ED82005087500A594A5 /* Skill.swift */; };
 		B64C131B2003E2210019E3B6 /* VolunteersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64C131A2003E2210019E3B6 /* VolunteersViewController.swift */; };
+		B65277A82007A50C00FF91C7 /* Code4SocialGood.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B65277A62007A50C00FF91C7 /* Code4SocialGood.xcdatamodeld */; };
 		B6597798200669C10073AE21 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6597797200669C10073AE21 /* CoreDataManager.swift */; };
 		B659779B20067C300073AE21 /* EntityObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B659779A20067C300073AE21 /* EntityObjectMapper.swift */; };
 		B6C0DB0D200503DD00950769 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C0DB0C200503DD00950769 /* Organization.swift */; };
@@ -48,6 +49,7 @@
 		B0B26D9E4D32ED62163B8FD9 /* Pods-Code4SocialGood.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Code4SocialGood.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Code4SocialGood/Pods-Code4SocialGood.debug.xcconfig"; sourceTree = "<group>"; };
 		B63D0ED82005087500A594A5 /* Skill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skill.swift; sourceTree = "<group>"; };
 		B64C131A2003E2210019E3B6 /* VolunteersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteersViewController.swift; sourceTree = "<group>"; };
+		B65277A72007A50C00FF91C7 /* Code4SocialGood.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Code4SocialGood.xcdatamodel; sourceTree = "<group>"; };
 		B6597797200669C10073AE21 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		B659779A20067C300073AE21 /* EntityObjectMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityObjectMapper.swift; sourceTree = "<group>"; };
 		B6C0DB0C200503DD00950769 /* Organization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
@@ -130,6 +132,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B65277A52007A4E900FF91C7 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				B65277A62007A50C00FF91C7 /* Code4SocialGood.xcdatamodeld */,
+			);
+			name = "Core Data";
+			sourceTree = "<group>";
+		};
 		B659779920067C150073AE21 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +184,7 @@
 		B6744AAE2004FD1E00E0A448 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B65277A52007A4E900FF91C7 /* Core Data */,
 				B6744AAF2004FD2500E0A448 /* Images */,
 				1881748A1FFD45F300175527 /* Info.plist */,
 			);
@@ -338,6 +349,7 @@
 				1860C65820069D5D001D08D5 /* StoryProtocol.swift in Sources */,
 				1860C65C20069E9E001D08D5 /* UserProtocol.swift in Sources */,
 				1881747F1FFD45F300175527 /* ProjectsViewController.swift in Sources */,
+				B65277A82007A50C00FF91C7 /* Code4SocialGood.xcdatamodeld in Sources */,
 				B63D0ED92005087500A594A5 /* Skill.swift in Sources */,
 				B6C0DB0D200503DD00950769 /* Organization.swift in Sources */,
 				B64C131B2003E2210019E3B6 /* VolunteersViewController.swift in Sources */,
@@ -531,6 +543,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B65277A62007A50C00FF91C7 /* Code4SocialGood.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B65277A72007A50C00FF91C7 /* Code4SocialGood.xcdatamodel */,
+			);
+			currentVersion = B65277A72007A50C00FF91C7 /* Code4SocialGood.xcdatamodel */;
+			path = Code4SocialGood.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 188174711FFD45F300175527 /* Project object */;
 }
