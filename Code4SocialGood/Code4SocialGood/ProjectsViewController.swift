@@ -6,14 +6,18 @@
 //  Copyright © 2018 Code 4 Social Good. All rights reserved.
 //
 
-import UIKit
 import Alamofire
+import ObjectMapper
 import SwiftyJSON
+import UIKit
 
-class ProjectsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class ProjectsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
     // Table view properties
     @IBOutlet weak var tableView: UITableView?
     let projectCellIdentifier = "ProjectCellIdentifier"
+    
+    var projects: [Project] = [] // TODO: Refactor this eventually to use CoreData and fetch controllers.
     
     let projectURL = "http://dev-api.code4socialgood.org/api/projects/"
     let projectHeroesURL = "http://dev-api.code4socialgood.org/api/projects/heroes"
@@ -26,6 +30,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     //let projectIdURL = "http://dev-api.code4socialgood.org/api/projects/id"
     //let projectApplicantHeroURL = "http://dev-api.code4socialgood.org/api/projects/id/applicantHeroMap"
     //let projectApplicantsURL = "http://dev-api.code4socialgood.org/api/projects/id/applicants"
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,11 +55,25 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return projects.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: projectCellIdentifier)!
+
+        // Get project for row
+        let project = self.projects[indexPath.row]
+
+        // Set cell title
+        var cellTitle: String?
+        if let id = project.id, let name = project.name {
+            cellTitle = "\(id) - \(name)"
+        }
+        else if let id = project.id {
+            cellTitle = "\(id) - (Missing name)"
+        }
+        cell.textLabel?.text = cellTitle
+
         return cell
     }
     
@@ -69,15 +88,37 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
+    
+    // MARK: - Restful API Methods
+    
     func getProjects(url: String) {
-        Alamofire.request(url, method: .get).responseJSON{
-            response in
-            if(response.result.isSuccess){
-                print("We have data!")
-                let projectJSON : JSON = JSON(response.result.value!)
-                print(projectJSON)
+        
+        let parameters: Parameters? = nil // Use this when we want to pass parameters to the call
+        let headers: HTTPHeaders = [ "Accept": "application/json" ]
+        
+        Alamofire.request(url, method: .get, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+            if (response.result.isSuccess) {
+                
+                // Verify we have results
+                if let array = response.result.value as? [Any] {
+                    for object in array {
+                        // Create the project model and add to temporary store
+                        if let project = Mapper<Project>().map(JSON: object as! [String: Any]) {
+                            self.projects.append(project)
+                        }
+                    }
+                    
+                    // Sort the array we just set
+                    self.projects = self.projects.sorted(by: { $0.id < $1.id })
+                    
+                    // Reload tableView after retrieving data
+                    self.tableView?.reloadData()
+                }
+                else if let _ = response.result.value as? [AnyHashable: Any] {
+                    print("This returned a dictionary.  You'll need to handle this differently.")
+                }
             }
-            else{
+            else {
                 print("There is an error getting data")
             }
         }
