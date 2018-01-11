@@ -14,5 +14,5 @@ protocol SkillProtocol {
     func getSkills(url:String)
     //func getSkillsProject(url:String)
     //func getSkillsUser(url:String)
-    func getHasJoinedSlackChat(url: String, emailAddress: String)
+    //func getHasJoinedSlackChat(url: String, emailAddress: String)
 }
