@@ -23,10 +23,10 @@ class Organization: Mappable {
     var country: String?
     var createdTime: String?
     var ein: String?
-    var facebook_url: String?
+    var facebookUrl: String?
     var id: Int!
     var latitude: Double?
-    var linkedin_url: String?
+    var linkedinUrl: String?
     var logoUrl: String?
     var longitude: Double?
     var name: String?
@@ -34,7 +34,7 @@ class Organization: Mappable {
     var projectUpdatedTime: String?
     var state: String?
     var status: String?
-    var twitter_url: String?
+    var twitterUrl: String?
     var websiteUrl: String?
     var zip: String?
     
@@ -55,10 +55,10 @@ class Organization: Mappable {
         country                 <- map["country"]
         createdTime             <- map["createdTime"]
         ein                     <- map["ein"]
-        facebook_url            <- map["facebook_url"]
+        facebookUrl             <- map["facebook_url"]
         id                      <- map["id"]
         latitude                <- map["latitude"]
-        linkedin_url            <- map["linkedin_url"]
+        linkedinUrl             <- map["linkedin_url"]
         logoUrl                 <- map["logoUrl"]
         longitude               <- map["longitude"]
         name                    <- map["name"]
@@ -66,7 +66,7 @@ class Organization: Mappable {
         projectUpdatedTime      <- map["projectUpdatedTime"]
         state                   <- map["state"]
         status                  <- map["status"]
-        twitter_url             <- map["twitter_url"]
+        twitterUrl              <- map["twitter_url"]
         websiteUrl              <- map["websiteUrl"]
         zip                     <- map["zip"]
     }
