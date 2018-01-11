@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
-class OrganizationsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class OrganizationsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+
     
     // Table view properties
     @IBOutlet weak var tableView: UITableView?
@@ -44,13 +47,4 @@ class OrganizationsViewController: UIViewController, UITableViewDelegate, UITabl
     
     
     // MARK: - UITableViewDelegate Methods
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50.0
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
 }

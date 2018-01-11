@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1860C65420069D12001D08D5 /* OrganizationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1860C65320069D12001D08D5 /* OrganizationProtocol.swift */; };
+		1860C65620069D39001D08D5 /* SkillProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1860C65520069D39001D08D5 /* SkillProtocol.swift */; };
+		1860C65820069D5D001D08D5 /* StoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1860C65720069D5D001D08D5 /* StoryProtocol.swift */; };
+		1860C65C20069E9E001D08D5 /* UserProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1860C65B20069E9E001D08D5 /* UserProtocol.swift */; };
+		1860C65E20069ED0001D08D5 /* ProjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1860C65D20069ED0001D08D5 /* ProjectProtocol.swift */; };
 		1881747D1FFD45F300175527 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1881747C1FFD45F300175527 /* AppDelegate.swift */; };
 		1881747F1FFD45F300175527 /* ProjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1881747E1FFD45F300175527 /* ProjectsViewController.swift */; };
 		188174811FFD45F300175527 /* OrganizationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188174801FFD45F300175527 /* OrganizationsViewController.swift */; };
@@ -28,6 +33,11 @@
 
 /* Begin PBXFileReference section */
 		0CD822F0BE43E94D57038E44 /* Pods-Code4SocialGood.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Code4SocialGood.release.xcconfig"; path = "Pods/Target Support Files/Pods-Code4SocialGood/Pods-Code4SocialGood.release.xcconfig"; sourceTree = "<group>"; };
+		1860C65320069D12001D08D5 /* OrganizationProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationProtocol.swift; sourceTree = "<group>"; };
+		1860C65520069D39001D08D5 /* SkillProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillProtocol.swift; sourceTree = "<group>"; };
+		1860C65720069D5D001D08D5 /* StoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryProtocol.swift; sourceTree = "<group>"; };
+		1860C65B20069E9E001D08D5 /* UserProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProtocol.swift; sourceTree = "<group>"; };
+		1860C65D20069ED0001D08D5 /* ProjectProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectProtocol.swift; sourceTree = "<group>"; };
 		188174791FFD45F300175527 /* Code4SocialGood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Code4SocialGood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1881747C1FFD45F300175527 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1881747E1FFD45F300175527 /* ProjectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +79,18 @@
 				0CD822F0BE43E94D57038E44 /* Pods-Code4SocialGood.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		1860C6612006A9E0001D08D5 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				1860C65D20069ED0001D08D5 /* ProjectProtocol.swift */,
+				1860C65B20069E9E001D08D5 /* UserProtocol.swift */,
+				1860C65720069D5D001D08D5 /* StoryProtocol.swift */,
+				1860C65520069D39001D08D5 /* SkillProtocol.swift */,
+				1860C65320069D12001D08D5 /* OrganizationProtocol.swift */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 		188174701FFD45F300175527 = {
@@ -129,6 +151,7 @@
 		B6744AAA2004FCEC00E0A448 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1860C6612006A9E0001D08D5 /* Protocols */,
 				1881747E1FFD45F300175527 /* ProjectsViewController.swift */,
 				188174801FFD45F300175527 /* OrganizationsViewController.swift */,
 				B64C131A2003E2210019E3B6 /* VolunteersViewController.swift */,
@@ -320,7 +343,11 @@
 			files = (
 				188174811FFD45F300175527 /* OrganizationsViewController.swift in Sources */,
 				1881747D1FFD45F300175527 /* AppDelegate.swift in Sources */,
+				1860C65420069D12001D08D5 /* OrganizationProtocol.swift in Sources */,
 				B6D99A66200514D600092E2F /* APIManager.swift in Sources */,
+				1860C65620069D39001D08D5 /* SkillProtocol.swift in Sources */,
+				1860C65820069D5D001D08D5 /* StoryProtocol.swift in Sources */,
+				1860C65C20069E9E001D08D5 /* UserProtocol.swift in Sources */,
 				1881747F1FFD45F300175527 /* ProjectsViewController.swift in Sources */,
 				B65277A82007A50C00FF91C7 /* Code4SocialGood.xcdatamodeld in Sources */,
 				B63D0ED92005087500A594A5 /* Skill.swift in Sources */,
@@ -331,6 +358,7 @@
 				B6597798200669C10073AE21 /* CoreDataManager.swift in Sources */,
 				B6C0DB112005076300950769 /* User.swift in Sources */,
 				B6C0DB13200507F400950769 /* Story.swift in Sources */,
+				1860C65E20069ED0001D08D5 /* ProjectProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
