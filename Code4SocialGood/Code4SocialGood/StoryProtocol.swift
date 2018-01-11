@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+protocol StoryProtocol{
+    //MARK - Story Rest API calls contract
+    func getStories(url:String)
+}
