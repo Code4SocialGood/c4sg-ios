@@ -13,15 +13,9 @@ import SwiftyJSON
 class ProjectsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     // Table view properties
     @IBOutlet weak var tableView: UITableView?
+    
     let projectCellIdentifier = "ProjectCellIdentifier"
-    
-    let projectURL = "http://dev-api.code4socialgood.org/api/projects/"
-    let projectHeroesURL = "http://dev-api.code4socialgood.org/api/projects/heroes"
-    let projectJobTitlesURL = "http://dev-api.code4socialgood.org/api/projects/jobTitles"
-    let projectOrgURL = "http://dev-api.code4socialgood.org/api/projects/organization"
-    let projectSearchURL = "http://dev-api.code4socialgood.org/api/projects/search"
-    let projectUserURL = "http://dev-api.code4socialgood.org/api/projects/user"
-    
+
     //These are not implemented yet since ID is an object parameters that we will have to pass to the function.
     //let projectIdURL = "http://dev-api.code4socialgood.org/api/projects/id"
     //let projectApplicantHeroURL = "http://dev-api.code4socialgood.org/api/projects/id/applicantHeroMap"
@@ -33,9 +27,6 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         // If we have a custom cell register it here, or you can use the storyboard to design/register the cell
         //tableView.register(ProjectTableViewCell.self, forCellReuseIdentifier: projectCellIdentifier)
         
-        
-        //Testing REST API calls...
-        getProjects(url:projectURL)
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,19 +58,5 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-
-    func getProjects(url: String) {
-        Alamofire.request(url, method: .get).responseJSON{
-            response in
-            if(response.result.isSuccess){
-                print("We have data!")
-                let projectJSON : JSON = JSON(response.result.value!)
-                print(projectJSON)
-            }
-            else{
-                print("There is an error getting data")
-            }
-        }
     }
 }

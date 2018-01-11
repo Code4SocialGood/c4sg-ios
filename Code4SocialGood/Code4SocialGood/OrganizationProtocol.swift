@@ -12,7 +12,7 @@ protocol OrganizationProtocol{
     // MARK: - Organization Rest API calls contract
     func getOrganizations(url:String)
     func getTotalCountries(url:String)
-    func getOrganizationsBySearch(url:String, keyWord: String, orgCountries: [String], openOpportunities: Bool, orgStatus: String, orgCategory:[String], pageResults: Int, orgSize: Int)
-    func getOrganizationUsersById(url: String, orgID:Int)
-    func getOrgById(url: String, orgID: Int)
+    //func getOrganizationsBySearch(url:String, keyWord: String, orgCountries: [String], openOpportunities: Bool, orgStatus: String, orgCategory:[String], pageResults: Int, orgSize: Int)
+    //func getOrganizationUsersById(url: String, orgID:Int)
+    //func getOrgById(url: String, orgID: Int)
 }
