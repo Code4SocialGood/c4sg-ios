@@ -9,8 +9,6 @@
 import CoreData
 import Foundation
 
-// TODO: Create the Core Data store when we're ready for persistent storage.
-
 class CoreDataManager: NSObject {
     
     lazy var managedObjectModel: NSManagedObjectModel = {
