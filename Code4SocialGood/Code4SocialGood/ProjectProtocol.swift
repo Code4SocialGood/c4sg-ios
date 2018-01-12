@@ -12,7 +12,8 @@ protocol ProjectProtocol {
     //MARK: - GET Methods
     
     // MARK: - Projects Rest API calls contract
-    func getProjects(url:String)
+    func getProjects(complete: @escaping ([Project]?, Error?) -> ())
+    
     //func getProjectApplicantById(url: String, applicantId: Int, userId: Int, appStatus: String)
     func getProjectHeroes(url:String)
     func getProjectsJobTitles(url:String)

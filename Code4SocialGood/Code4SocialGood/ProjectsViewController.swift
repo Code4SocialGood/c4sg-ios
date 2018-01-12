@@ -10,23 +10,27 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class ProjectsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class ProjectsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
     // Table view properties
     @IBOutlet weak var tableView: UITableView?
-    
     let projectCellIdentifier = "ProjectCellIdentifier"
 
-    //These are not implemented yet since ID is an object parameters that we will have to pass to the function.
-    //let projectIdURL = "http://dev-api.code4socialgood.org/api/projects/id"
-    //let projectApplicantHeroURL = "http://dev-api.code4socialgood.org/api/projects/id/applicantHeroMap"
-    //let projectApplicantsURL = "http://dev-api.code4socialgood.org/api/projects/id/applicants"
+    var projects: [Project] = [] // TODO: Refactor this eventually to use CoreData and fetch controllers.
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // If we have a custom cell register it here, or you can use the storyboard to design/register the cell
         //tableView.register(ProjectTableViewCell.self, forCellReuseIdentifier: projectCellIdentifier)
-        
+      
+        APIManager.shared.getProjects() { (projects, error) in
+            if let projects = projects {
+                self.projects = projects
+                self.tableView?.reloadData()
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,11 +45,25 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return projects.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: projectCellIdentifier)!
+        
+        // Get project for row
+        let project = self.projects[indexPath.row]
+        
+        // Set cell title
+        var cellTitle: String?
+        if let id = project.id, let name = project.name {
+            cellTitle = "\(id) - \(name)"
+        }
+        else if let id = project.id {
+            cellTitle = "\(id) - (Missing name)"
+        }
+        cell.textLabel?.text = cellTitle
+        
         return cell
     }
     

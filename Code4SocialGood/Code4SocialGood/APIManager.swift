@@ -6,46 +6,56 @@
 //  Copyright © 2018 Code 4 Social Good. All rights reserved.
 //
 
-import UIKit
 import Alamofire
+import ObjectMapper
 import SwiftyJSON
+import UIKit
 
 enum Environment {
     case dev
     case prod
+    case heroku
 }
 
 class APIManager: NSObject, ProjectProtocol, UserProtocol, StoryProtocol, SkillProtocol, OrganizationProtocol {
- 
+    
     let dataErrorMessage = "Unable to get data"
 
     // Environment properties
-    var environment: Environment = .prod
+    var environment: Environment = .dev
     
     // API properties
     struct APIUrls {
-        let dev: String = "http://dev-api.code4socialgood.org/" // TODO: Do we have a dev instance?
-        let prod: String = "http://dev-api.code4socialgood.org/"
+        let dev: String = "http://dev-api.code4socialgood.org/"
+        let prod: String = "http://api.code4socialgood.org/"
+        let heroku: String = "https://c4sg-prod.herokuapp.com/"
     }
-    public private(set) var apiURL: String!
-    public private(set) var apiToken: String!
+    private let apiURL: String
+    private let apiToken: String
     
     struct APIEndpoints {
-        
         // Organization
-        let organization: String = "http://dev-api.code4socialgood.org/api/projects/organization"
+        let organizations: String               = "api/organizations"
+        let organizationCountriesTotal: String  = "api/organizations/countries/total"
+        let organizationSearch: String          = "api/organizations/search/"
+        let organizationByUser: String          = "api/organizations/user/" // api/organizations/user/{id}
+        let organizationById: String            = "api/organizations/" // api/organizations/{id}
         
         // Project
-        let project: String = "http://dev-api.code4socialgood.org/api/projects/"
+        let projects: String = "api/projects"
+        // TODO: Include the other project related API requests.
         
-        // Skills
-        let skill: String = "http://dev-api.code4socialgood.org/api/skills"
+        // Skill
+        let skills: String = "api/skills"
+        // TODO: Include the other skill related API requests.
         
         // Story
-        let story: String = "http://dev-api.code4socialgood.org/api/story"
+        let stories: String = "api/stories"
+        // TODO: Include the other story related API requests.
         
-        // Users
-        let user: String = "http://dev-api.code4socialgood.org/api/users"
+        // User
+        let users: String = "api/users"
+        // TODO: Include the other user/volunteer related API requests.
     }
     private let apiEndpoints = APIEndpoints()
     
@@ -67,19 +77,11 @@ class APIManager: NSObject, ProjectProtocol, UserProtocol, StoryProtocol, SkillP
         
     }
     
+    
     //Commented out methods that require additional parameters in order to function we will eventually consider moving to a repository pattern for all of the methods for code reuse.
     
-    //Only GET methods are implemented.
     
-    // MARK - Organization Methods
-    
-    /*func getOrgById(url: String, orgID: Int) {
-    //TODO: Implement this method after data is passed to model
-    }*/
-    
-    /*func getOrganizationUsersById(url: String, orgID: Int) {
-    
-    }*/
+    // MARK: - Organization Methods
     
     func getOrganizations(url: String) {
         Alamofire.request(url, method: .get).responseJSON{
@@ -92,6 +94,18 @@ class APIManager: NSObject, ProjectProtocol, UserProtocol, StoryProtocol, SkillP
                 print("\(self.dataErrorMessage)")
             }
         }
+    }
+    
+    func getOrgById(url: String, orgID: Int) {
+        //TODO: Implement this method after data is passed to model
+    }
+    
+    func getOrganizationUsersById(url: String, orgID: Int) {
+    
+    }
+    
+    func getOrganizationsBySearch(url: String, keyWord: String, orgCountries: [String], openOpportunities: Bool, orgStatus: String, orgCategory: [String], pageResults: Int, orgSize: Int) {
+        
     }
     
     func getTotalCountries(url: String) {
@@ -107,33 +121,56 @@ class APIManager: NSObject, ProjectProtocol, UserProtocol, StoryProtocol, SkillP
         }
     }
     
-    /*func getHasJoinedSlackChat(url: String, emailAddress: String) {
+    func getHasJoinedSlackChat(url: String, emailAddress: String) {
 
-    }*/
-
-    // MARK - Project Methods
+    }
     
-    func getProjects(url: String) {
-        Alamofire.request(url, method: .get).responseJSON{
-            response in
-            if(response.result.isSuccess){
-                let projectJSON : JSON = JSON(response.result.value!)
-                print(projectJSON)
+    
+    // MARK: - Project Methods
+    
+    func getProjects(complete: @escaping ([Project]?, Error?) -> ()) {
+        let urlString = "\(apiURL)\(apiEndpoints.organizations)"
+        print("  --> GET All Projects: \(urlString)")
+        
+        let parameters: Parameters? = nil // Use this when we want to pass parameters to the call
+        let headers: HTTPHeaders = [ "Accept": "application/json" ] // Consider this being a helper method if all calls have the same headers
+        
+        Alamofire.request(urlString, method: .get, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+            if (response.result.isSuccess) {
+                
+                // Verify we have results
+                if let array = response.result.value as? [Any] {
+                    var projects: [Project] = []
+                    for object in array {
+                        // Create the project model and add to temporary store
+                        if let project = Mapper<Project>().map(JSON: object as! [String: Any]) {
+                            projects.append(project)
+                        }
+                    }
+                    
+                    // Sort the array we just set
+                    projects = projects.sorted(by: { $0.id < $1.id })
+                    
+                    complete(projects, nil)
+                }
+                else if let _ = response.result.value as? [AnyHashable: Any] {
+                    print("This returned a dictionary.  You'll need to handle this differently.")
+                    // TODO: Create the error object and pass that
+                    complete(nil, nil)
+                }
             }
-            else{
-                print("\(self.dataErrorMessage)")
+            else {
+                print("There is an error getting data")
+                // TODO: Create the error object and pass that
+                complete(nil, nil)
             }
         }
     }
     
-    //func getOrganizationsBySearch(url: String, keyWord: String, orgCountries: [String], openOpportunities: Bool, orgStatus: String, orgCategory: [String], pageResults: Int, orgSize: Int) {
-        
-    //}
-    
-    //func getProjectApplicantById(url: String, applicantId: Int, userId: Int, appStatus: String) {
+    func getProjectApplicantById(url: String, applicantId: Int, userId: Int, appStatus: String) {
 
-    //}
-    
+    }
+
     func getProjectHeroes(url: String) {
         Alamofire.request(url, method: .get).responseJSON{
             response in
@@ -159,7 +196,7 @@ class APIManager: NSObject, ProjectProtocol, UserProtocol, StoryProtocol, SkillP
         }
     }
     
-    /*func getProjectOrganization(url: String, orgID: Int, projectStatus: String) {
+    func getProjectOrganization(url: String, orgID: Int, projectStatus: String) {
 
     }
     
@@ -177,10 +214,10 @@ class APIManager: NSObject, ProjectProtocol, UserProtocol, StoryProtocol, SkillP
     
     func getProjectApplicantsByID(url: String, Id: Int) {
 
-    }*/
+    }
     
     
-    // MARK - Skill Methods
+    // MARK: - Skill Methods
     
     func getSkills(url: String) {
         Alamofire.request(url, method: .get).responseJSON{
@@ -195,7 +232,9 @@ class APIManager: NSObject, ProjectProtocol, UserProtocol, StoryProtocol, SkillP
         }
     }
     
-    // MARK - Story Methods
+    
+    // MARK: - Story Methods
+    
     func getStories(url: String) {
         Alamofire.request(url, method: .get).responseJSON{
             response in
@@ -210,7 +249,7 @@ class APIManager: NSObject, ProjectProtocol, UserProtocol, StoryProtocol, SkillP
     }
     
     
-    // MARK - User Methods
+    // MARK: - User Methods
 
     func getUsers(url: String) {
         Alamofire.request(url, method: .get).responseJSON{
@@ -225,9 +264,9 @@ class APIManager: NSObject, ProjectProtocol, UserProtocol, StoryProtocol, SkillP
         }
     }
     
-    /*func getUserByEmail(url: String, emailAddress: String) {
+    func getUserByEmail(url: String, emailAddress: String) {
 
-    }*/
+    }
     
     func getUserJobTitles(url: String) {
         Alamofire.request(url, method: .get).responseJSON{
@@ -242,7 +281,7 @@ class APIManager: NSObject, ProjectProtocol, UserProtocol, StoryProtocol, SkillP
         }
     }
     
-    /*func getUsersByOrganizationID(url: String, orgID: Int) {
+    func getUsersByOrganizationID(url: String, orgID: Int) {
  
     }
     
@@ -252,7 +291,6 @@ class APIManager: NSObject, ProjectProtocol, UserProtocol, StoryProtocol, SkillP
     
     func getUserByID(url: String, userID: Int) {
  
-    }*/
-    
+    }
     
 }
