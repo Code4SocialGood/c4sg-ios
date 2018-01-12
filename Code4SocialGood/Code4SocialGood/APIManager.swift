@@ -42,20 +42,17 @@ class APIManager: NSObject, ProjectProtocol, UserProtocol, StoryProtocol, SkillP
         let organizationById: String            = "api/organizations/" // api/organizations/{id}
         
         // Project
-        let projects: String = "api/projects"
-        // TODO: Include the other project related API requests.
+        let projects: String        = "api/projects"
+        let projectById: String     = "api/projects/" // api/projects/{id}
         
         // Skill
         let skills: String = "api/skills"
-        // TODO: Include the other skill related API requests.
         
         // Story
         let stories: String = "api/stories"
-        // TODO: Include the other story related API requests.
         
         // User
         let users: String = "api/users"
-        // TODO: Include the other user/volunteer related API requests.
     }
     private let apiEndpoints = APIEndpoints()
     
@@ -128,15 +125,21 @@ class APIManager: NSObject, ProjectProtocol, UserProtocol, StoryProtocol, SkillP
     
     // MARK: - Project Methods
     
-    func getProjects(complete: @escaping ([Project]?, Error?) -> ()) {
-        let urlString = "\(apiURL)\(apiEndpoints.organizations)"
+    func getProjects(complete: @escaping ([Project]?, CustomError?) -> ()) {
+        let urlString = "\(apiURL)\(apiEndpoints.projects)"
         print("  --> GET All Projects: \(urlString)")
         
         let parameters: Parameters? = nil // Use this when we want to pass parameters to the call
-        let headers: HTTPHeaders = [ "Accept": "application/json" ] // Consider this being a helper method if all calls have the same headers
+        let headers = getHTTPHeaders()
         
         Alamofire.request(urlString, method: .get, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
             if (response.result.isSuccess) {
+                
+                // Test if we get an error response from the server
+                if let error = self.testForError(response.result.value as AnyObject) {
+                    complete(nil, error)
+                    return
+                }
                 
                 // Verify we have results
                 if let array = response.result.value as? [Any] {
@@ -154,15 +157,50 @@ class APIManager: NSObject, ProjectProtocol, UserProtocol, StoryProtocol, SkillP
                     complete(projects, nil)
                 }
                 else if let _ = response.result.value as? [AnyHashable: Any] {
-                    print("This returned a dictionary.  You'll need to handle this differently.")
-                    // TODO: Create the error object and pass that
-                    complete(nil, nil)
+                    let errorString = "This returned a dictionary.  You'll need to handle this differently."
+                    complete(nil, CustomError(code: 0, title: nil, description: errorString))
                 }
             }
             else {
-                print("There is an error getting data")
-                // TODO: Create the error object and pass that
-                complete(nil, nil)
+                let errorString = "There is an error getting data"
+                complete(nil, CustomError(code: 0, title: nil, description: errorString))
+            }
+        }
+    }
+    
+    func getProjectByID(id: Int64, complete: @escaping ([Project]?, CustomError?) -> ()) {
+        let urlString = "\(apiURL)\(apiEndpoints.projectById)\(id)"
+        print("  --> GET Project By ID: \(urlString)")
+        
+        let parameters: Parameters? = nil
+        let headers = getHTTPHeaders()
+        
+        Alamofire.request(urlString, method: .get, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+            if (response.result.isSuccess) {
+                
+                // Test if we get an error response from the server
+                if let error = self.testForError(response.result.value as AnyObject) {
+                    complete(nil, error)
+                    return
+                }
+                
+                // Verify we have results
+                if let dictionary = response.result.value as? [AnyHashable: Any] {
+                    // Create the project model and add to temporary store
+                    var projects: [Project] = []
+                    if let project = Mapper<Project>().map(JSON: dictionary as! [String: Any]) {
+                        projects.append(project)
+                    }
+                    complete(projects, nil)
+                }
+                else {
+                    let errorString = "This did not return a dictionary."
+                    complete(nil, CustomError(code: 0, title: nil, description: errorString))
+                }
+            }
+            else {
+                let errorString = "There is an error getting data"
+                complete(nil, CustomError(code: 0, title: nil, description: errorString))
             }
         }
     }
@@ -205,10 +243,6 @@ class APIManager: NSObject, ProjectProtocol, UserProtocol, StoryProtocol, SkillP
     }
     
     func getProjectsByUserID(url: String, userID: Int, userStatus: String) {
-
-    }
-    
-    func getProjectbyID(url: String, projectID: Int) {
 
     }
     
@@ -291,6 +325,23 @@ class APIManager: NSObject, ProjectProtocol, UserProtocol, StoryProtocol, SkillP
     
     func getUserByID(url: String, userID: Int) {
  
+    }
+ 
+    
+    // MARK: - Private Helper Methods
+    
+    private func getHTTPHeaders() -> HTTPHeaders {
+        return [ "Accept": "application/json" ]
+    }
+    
+    private func testForError(_ response: AnyObject?) -> CustomError? {
+        if let errorResponse = response as? [AnyHashable: Any],
+            let status = errorResponse["status"] as? Int,
+            let error = errorResponse["error"] as? String,
+            let message = errorResponse["message"] as? String {
+            return CustomError(code: status, title: error, description: message)
+        }
+        return nil
     }
     
 }
