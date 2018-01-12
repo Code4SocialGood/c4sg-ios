@@ -9,17 +9,29 @@
 import Foundation
 
 protocol ProjectProtocol {
-    //MARK: - GET Methods
     
-    // MARK: - Projects Rest API calls contract
-    func getProjects(complete: @escaping ([Project]?, Error?) -> ())
+    /**
+     Retrieves all projects from remote server.
+     
+     - Parameter complete: Returns an Array object containing an array of Project objects if success, or an Error object if failed.
+     */
+    func getProjects(complete: @escaping ([Project]?, CustomError?) -> ())
+    
+    /**
+     Retrieves a project from remote server filtered by project ID.
+     
+     - Parameter id: The ID of the project to be searched for.
+     - Parameter complete: Returns an Array object containing an array of Project objects if success, or an Error object if failed.
+     */
+    func getProjectByID(id: Int64, complete: @escaping ([Project]?, CustomError?) -> ())
+    
+    
     
     //func getProjectApplicantById(url: String, applicantId: Int, userId: Int, appStatus: String)
-    func getProjectHeroes(url:String)
-    func getProjectsJobTitles(url:String)
+    //func getProjectHeroes(url:String)
+    //func getProjectsJobTitles(url:String)
     //func getProjectOrganization(url:String, orgID: Int, projectStatus: String)
     //func getProjectsBySearch(url:String, keyWord: String, jobTitles: [Int], skills: [Int], projectStatus: String, projectLoc: String, pageResults: Int, sizeOfRecords: Int)
     //func getProjectsByUserID(url: String, userID: Int, userStatus: String)
-    //func getProjectbyID(url:String, projectID: Int)
     //func getProjectApplicantsByID(url:String, Id: Int)
 }

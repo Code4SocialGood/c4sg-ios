@@ -26,11 +26,27 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         //tableView.register(ProjectTableViewCell.self, forCellReuseIdentifier: projectCellIdentifier)
       
         APIManager.shared.getProjects() { (projects, error) in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+                return
+            }
             if let projects = projects {
                 self.projects = projects
                 self.tableView?.reloadData()
             }
         }
+        
+        /*
+        APIManager.shared.getProjectByID(id: 82) { (projects, error) in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+                return
+            }
+            if let projects = projects {
+                self.projects = projects
+                self.tableView?.reloadData()
+            }
+        }*/
     }
 
     override func didReceiveMemoryWarning() {
