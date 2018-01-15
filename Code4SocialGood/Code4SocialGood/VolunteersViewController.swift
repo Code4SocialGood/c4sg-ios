@@ -16,12 +16,37 @@ class VolunteersViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var tableView: UITableView?
     let volunteerCellIdentifier = "VolunteerCellIdentifier"
     
+    var users: [User] = [] // TODO: Refactor this eventually to use CoreData and fetch controllers.
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // If we have a custom cell register it here, or you can use the storyboard to design/register the cell
         //tableView.register(VolunteerTableViewCell.self, forCellReuseIdentifier: volunteerCellIdentifier)
+        
+        APIManager.shared.getUsers() { (users, error) in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+                return
+            }
+            if let users = users {
+                self.users = users
+                self.tableView?.reloadData()
+            }
+        }
+        
+        /*
+        APIManager.shared.getUserByID(id: 1472) { (users, error) in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+                return
+            }
+            if let users = users {
+                self.users = users
+                self.tableView?.reloadData()
+            }
+        }*/
     }
     
     override func didReceiveMemoryWarning() {
@@ -36,11 +61,25 @@ class VolunteersViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return users.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: volunteerCellIdentifier)!
+        
+        // Get user for row
+        let user = self.users[indexPath.row]
+        
+        // Set cell title
+        var cellTitle: String?
+        if let id = user.id, let userName = user.userName {
+            cellTitle = "\(id) - \(userName)"
+        }
+        else if let id = user.id {
+            cellTitle = "\(id) - (Missing userName)"
+        }
+        cell.textLabel?.text = cellTitle
+        
         return cell
     }
     

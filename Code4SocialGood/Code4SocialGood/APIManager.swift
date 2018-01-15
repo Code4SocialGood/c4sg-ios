@@ -51,7 +51,9 @@ class APIManager: NSObject, OrganizationProtocol, ProjectProtocol, SkillProtocol
         let stories: String = "api/stories"
         
         // User
-        let users: String = "api/users"
+        let users: String           = "api/users"
+        let userById: String        = "api/users/" // api/users/{id}
+        let userByEmail: String     = "api/users/email/" // api/users/email/{email}/
     }
     private let apiEndpoints = APIEndpoints()
     
@@ -99,7 +101,7 @@ class APIManager: NSObject, OrganizationProtocol, ProjectProtocol, SkillProtocol
                     if let array = response.result.value as? [Any] {
                         var organizations: [Organization] = []
                         for object in array {
-                            // Create the project model and add to temporary store
+                            // Create the organization model and add to temporary store
                             if let organization = Mapper<Organization>().map(JSON: object as! [String: Any]) {
                                 organizations.append(organization)
                             }
@@ -143,7 +145,7 @@ class APIManager: NSObject, OrganizationProtocol, ProjectProtocol, SkillProtocol
                     
                     // Verify we have results
                     if let dictionary = response.result.value as? [AnyHashable: Any] {
-                        // Create the project model and add to temporary store
+                        // Create the organization model and add to temporary store
                         var organizations: [Organization] = []
                         if let organization = Mapper<Organization>().map(JSON: dictionary as! [String: Any]) {
                             organizations.append(organization)
@@ -312,7 +314,6 @@ class APIManager: NSObject, OrganizationProtocol, ProjectProtocol, SkillProtocol
                     
                     // Verify we have results
                     if let array = response.result.value as? [Any] {
-                        // Create the project model and add to temporary store
                         var heroes: [User] = []
                         for object in array {
                             // Create the user model and add to temporary store
@@ -343,6 +344,132 @@ class APIManager: NSObject, OrganizationProtocol, ProjectProtocol, SkillProtocol
     
     // MARK: - User Methods
     
+    public func getUsers(complete: @escaping ([User]?, CustomError?) -> ()) {
+        let urlString = "\(apiURL)\(apiEndpoints.users)"
+        print("  --> GET All Users: \(urlString)")
+        
+        let parameters: Parameters? = nil // Use this when we want to pass parameters to the call
+        let headers = getHTTPHeaders()
+        
+        Alamofire.request(urlString, method: .get, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .responseJSON { response in
+                if (response.result.isSuccess) {
+                    
+                    // Test if we get an error response from the server
+                    if let error = self.testResponseForError(response.result.value as AnyObject) {
+                        complete(nil, error)
+                        return
+                    }
+                    
+                    // Verify we have results
+                    if let array = response.result.value as? [Any] {
+                        var users: [User] = []
+                        for object in array {
+                            // Create the user model and add to temporary store
+                            if let user = Mapper<User>().map(JSON: object as! [String: Any]) {
+                                users.append(user)
+                            }
+                        }
+                        
+                        // Sort the array we just set
+                        users = users.sorted(by: { $0.id < $1.id })
+                        
+                        complete(users, nil)
+                    }
+                    else if let _ = response.result.value as? [AnyHashable: Any] {
+                        let errorString = "This returned a dictionary.  You'll need to handle this differently."
+                        complete(nil, CustomError(code: 0, title: nil, description: errorString))
+                    }
+                }
+                else {
+                    let errorString = "There is an error getting data"
+                    complete(nil, CustomError(code: 0, title: nil, description: errorString))
+                }
+        }
+    }
+    
+    public func getUserByID(id: Int64, complete: @escaping ([User]?, CustomError?) -> ()) {
+        let urlString = "\(apiURL)\(apiEndpoints.userById)\(id)"
+        print("  --> GET User By ID: \(urlString)")
+        
+        let parameters: Parameters? = nil
+        let headers = getHTTPHeaders()
+        
+        Alamofire.request(urlString, method: .get, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .responseJSON { response in
+                if (response.result.isSuccess) {
+                    
+                    // Test if we get an error response from the server
+                    if let error = self.testResponseForError(response.result.value as AnyObject) {
+                        complete(nil, error)
+                        return
+                    }
+                    
+                    // Verify we have results
+                    if let dictionary = response.result.value as? [AnyHashable: Any] {
+                        // Create the user model and add to temporary store
+                        var users: [User] = []
+                        if let user = Mapper<User>().map(JSON: dictionary as! [String: Any]) {
+                            users.append(user)
+                        }
+                        complete(users, nil)
+                    }
+                    else {
+                        let errorString = "This did not return a dictionary."
+                        complete(nil, CustomError(code: 0, title: nil, description: errorString))
+                    }
+                }
+                else {
+                    let errorString = "There is an error getting data"
+                    complete(nil, CustomError(code: 0, title: nil, description: errorString))
+                }
+        }
+    }
+    
+    public func getUserByEmail(email: String, complete: @escaping ([User]?, CustomError?) -> ()) {
+        let urlString = "\(apiURL)\(apiEndpoints.userByEmail)\(email)/"
+        print("  --> GET User By Email: \(urlString)")
+        
+        let parameters: Parameters? = nil
+        let headers = getHTTPHeaders()
+        
+        Alamofire.request(urlString, method: .get, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .responseJSON { response in
+                if (response.result.isSuccess) {
+                    
+                    // Test if we get an error response from the server
+                    if let error = self.testResponseForError(response.result.value as AnyObject) {
+                        complete(nil, error)
+                        return
+                    }
+                    
+                    // Verify we have results
+                    if let dictionary = response.result.value as? [AnyHashable: Any] {
+                        // Create the user model and add to temporary store
+                        var users: [User] = []
+                        if let user = Mapper<User>().map(JSON: dictionary as! [String: Any]) {
+                            users.append(user)
+                        }
+                        complete(users, nil)
+                    }
+                    else {
+                        let errorString = "This did not return a dictionary."
+                        complete(nil, CustomError(code: 0, title: nil, description: errorString))
+                    }
+                }
+                else {
+                    let errorString = "There is an error getting data"
+                    complete(nil, CustomError(code: 0, title: nil, description: errorString))
+                }
+        }
+    }
+    
     
     // MARK: - Private Helper Methods
     
@@ -359,5 +486,5 @@ class APIManager: NSObject, OrganizationProtocol, ProjectProtocol, SkillProtocol
         }
         return nil
     }
-    
+
 }

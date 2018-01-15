@@ -41,7 +41,6 @@ protocol ProjectProtocol {
     
     
     
-    
     // TODO: Complete/Update the following protocols and methods within API Manager
     
     //func getProjectApplicantById(url: String, applicantId: Int, userId: Int, appStatus: String)

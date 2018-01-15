@@ -19,7 +19,6 @@ protocol OrganizationProtocol {
     
     
     
-    
     // TODO: Complete/Update the following protocols and methods within API Manager
     
     //func getTotalCountries(url:String)
