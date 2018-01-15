@@ -8,10 +8,21 @@
 
 import Foundation
 
-protocol OrganizationProtocol{
-    // MARK: - Organization Rest API calls contract
-    func getOrganizations(url:String)
-    func getTotalCountries(url:String)
+protocol OrganizationProtocol {
+    
+    /**
+     Retrieves all organizations from remote server.
+     
+     - Parameter complete: Returns an Array object containing an array of Organization objects if success, or an Error object if failed.
+     */
+    func getOrganizations(complete: @escaping ([Organization]?, CustomError?) -> ())
+    
+    
+    
+    
+    // TODO: Complete/Update the following protocols and methods within API Manager
+    
+    //func getTotalCountries(url:String)
     //func getOrganizationsBySearch(url:String, keyWord: String, orgCountries: [String], openOpportunities: Bool, orgStatus: String, orgCategory:[String], pageResults: Int, orgSize: Int)
     //func getOrganizationUsersById(url: String, orgID:Int)
     //func getOrgById(url: String, orgID: Int)

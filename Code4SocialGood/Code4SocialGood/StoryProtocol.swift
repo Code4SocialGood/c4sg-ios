@@ -8,7 +8,9 @@
 
 import Foundation
 
-protocol StoryProtocol{
-    //MARK - Story Rest API calls contract
-    func getStories(url:String)
+protocol StoryProtocol {
+    
+    // TODO: Complete/Update the following protocols and methods within API Manager
+    
+    //func getStories(url:String)
 }

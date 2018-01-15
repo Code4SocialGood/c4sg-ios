@@ -25,11 +25,26 @@ protocol ProjectProtocol {
      */
     func getProjectByID(id: Int64, complete: @escaping ([Project]?, CustomError?) -> ())
     
+    /**
+     Retrieves a list of job titles.
+     
+     - Parameter complete: Returns an Array object containing an array of Dictionary objects if success, or an Error object if failed.
+     */
+    func getProjectsJobTitles(complete: @escaping ([Dictionary<String, Any>]?, CustomError?) -> ())
     
+    /**
+     Retrieves heroes sorted by number of badges.
+     
+     - Parameter complete: Returns an Array object containing an array of User objects if success, or an Error object if failed.
+     */
+    func getProjectHeroes(complete: @escaping ([User]?, CustomError?) -> ())
+    
+    
+    
+    
+    // TODO: Complete/Update the following protocols and methods within API Manager
     
     //func getProjectApplicantById(url: String, applicantId: Int, userId: Int, appStatus: String)
-    //func getProjectHeroes(url:String)
-    //func getProjectsJobTitles(url:String)
     //func getProjectOrganization(url:String, orgID: Int, projectStatus: String)
     //func getProjectsBySearch(url:String, keyWord: String, jobTitles: [Int], skills: [Int], projectStatus: String, projectLoc: String, pageResults: Int, sizeOfRecords: Int)
     //func getProjectsByUserID(url: String, userID: Int, userStatus: String)

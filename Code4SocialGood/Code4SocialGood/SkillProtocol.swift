@@ -9,9 +9,10 @@
 import Foundation
 
 protocol SkillProtocol {
-    // MARK - Skill Rest API calls contract
     
-    func getSkills(url:String)
+    // TODO: Complete/Update the following protocols and methods within API Manager
+    
+    //func getSkills(url:String)
     //func getSkillsProject(url:String)
     //func getSkillsUser(url:String)
     //func getHasJoinedSlackChat(url: String, emailAddress: String)
