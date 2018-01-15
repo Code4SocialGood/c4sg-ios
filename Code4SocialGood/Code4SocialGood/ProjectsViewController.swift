@@ -25,23 +25,15 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         // If we have a custom cell register it here, or you can use the storyboard to design/register the cell
         //tableView.register(ProjectTableViewCell.self, forCellReuseIdentifier: projectCellIdentifier)
       
-//        APIManager.shared.getProjects() { (projects, error) in
-//            if let error = error {
-//                print("Error: \(error.localizedDescription)")
-//                return
-//            }
-//            if let projects = projects {
-//                self.projects = projects
-//                self.tableView?.reloadData()
-//            }
-//        }
-        
-        APIManager.shared.getProjectHeroes() { (projects, error) in
+        APIManager.shared.getProjects() { (projects, error) in
             if let error = error {
                 print("Error: \(error.localizedDescription)")
                 return
             }
-            print("returning object: \(projects)")
+            if let projects = projects {
+                self.projects = projects
+                self.tableView?.reloadData()
+            }
         }
         
         /*
