@@ -18,6 +18,10 @@
 		188174841FFD45F300175527 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188174821FFD45F300175527 /* Main.storyboard */; };
 		188174861FFD45F300175527 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 188174851FFD45F300175527 /* Assets.xcassets */; };
 		188174891FFD45F300175527 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188174871FFD45F300175527 /* LaunchScreen.storyboard */; };
+		B62F90BA200D44BC00017405 /* BackgroundVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B62F90B9200D447000017405 /* BackgroundVideo.mp4 */; };
+		B62F90BD200D49B400017405 /* BackgroundVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62F90BC200D49B400017405 /* BackgroundVideoView.swift */; };
+		B62F90C3200D5ABC00017405 /* TypingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62F90C2200D5ABC00017405 /* TypingLabel.swift */; };
+		B6347584200D3FDD00C393F3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6347583200D3FDD00C393F3 /* MainViewController.swift */; };
 		B63D0ED92005087500A594A5 /* Skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63D0ED82005087500A594A5 /* Skill.swift */; };
 		B641BAD92009299400699C2F /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B641BAD82009299400699C2F /* CustomError.swift */; };
 		B64C131B2003E2210019E3B6 /* VolunteersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64C131A2003E2210019E3B6 /* VolunteersViewController.swift */; };
@@ -48,6 +52,10 @@
 		188174881FFD45F300175527 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1881748A1FFD45F300175527 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0B26D9E4D32ED62163B8FD9 /* Pods-Code4SocialGood.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Code4SocialGood.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Code4SocialGood/Pods-Code4SocialGood.debug.xcconfig"; sourceTree = "<group>"; };
+		B62F90B9200D447000017405 /* BackgroundVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = BackgroundVideo.mp4; sourceTree = "<group>"; };
+		B62F90BC200D49B400017405 /* BackgroundVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundVideoView.swift; sourceTree = "<group>"; };
+		B62F90C2200D5ABC00017405 /* TypingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingLabel.swift; sourceTree = "<group>"; };
+		B6347583200D3FDD00C393F3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B63D0ED82005087500A594A5 /* Skill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skill.swift; sourceTree = "<group>"; };
 		B641BAD82009299400699C2F /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 		B64C131A2003E2210019E3B6 /* VolunteersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteersViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +142,30 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B62F90BB200D45C900017405 /* Videos */ = {
+			isa = PBXGroup;
+			children = (
+				B62F90B9200D447000017405 /* BackgroundVideo.mp4 */,
+			);
+			name = Videos;
+			sourceTree = "<group>";
+		};
+		B62F90BE200D4B5700017405 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				188174821FFD45F300175527 /* Main.storyboard */,
+				188174871FFD45F300175527 /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		B62F90BF200D568200017405 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		B65277A52007A4E900FF91C7 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,10 +186,11 @@
 			isa = PBXGroup;
 			children = (
 				1860C6612006A9E0001D08D5 /* Protocols */,
+				1881747C1FFD45F300175527 /* AppDelegate.swift */,
 				1881747E1FFD45F300175527 /* ProjectsViewController.swift */,
 				188174801FFD45F300175527 /* OrganizationsViewController.swift */,
 				B64C131A2003E2210019E3B6 /* VolunteersViewController.swift */,
-				1881747C1FFD45F300175527 /* AppDelegate.swift */,
+				B6347583200D3FDD00C393F3 /* MainViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -165,8 +198,9 @@
 		B6744AAB2004FCF400E0A448 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				188174821FFD45F300175527 /* Main.storyboard */,
-				188174871FFD45F300175527 /* LaunchScreen.storyboard */,
+				B62F90BE200D4B5700017405 /* Storyboards */,
+				B62F90BC200D49B400017405 /* BackgroundVideoView.swift */,
+				B62F90C2200D5ABC00017405 /* TypingLabel.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -188,7 +222,9 @@
 			isa = PBXGroup;
 			children = (
 				B65277A52007A4E900FF91C7 /* Core Data */,
+				B62F90BF200D568200017405 /* Fonts */,
 				B6744AAF2004FD2500E0A448 /* Images */,
+				B62F90BB200D45C900017405 /* Videos */,
 				1881748A1FFD45F300175527 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -273,6 +309,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B62F90BA200D44BC00017405 /* BackgroundVideo.mp4 in Resources */,
 				188174891FFD45F300175527 /* LaunchScreen.storyboard in Resources */,
 				188174861FFD45F300175527 /* Assets.xcassets in Resources */,
 				188174841FFD45F300175527 /* Main.storyboard in Resources */,
@@ -345,6 +382,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				188174811FFD45F300175527 /* OrganizationsViewController.swift in Sources */,
+				B62F90C3200D5ABC00017405 /* TypingLabel.swift in Sources */,
 				1881747D1FFD45F300175527 /* AppDelegate.swift in Sources */,
 				1860C65420069D12001D08D5 /* OrganizationProtocol.swift in Sources */,
 				B6D99A66200514D600092E2F /* APIManager.swift in Sources */,
@@ -363,6 +401,8 @@
 				B6C0DB13200507F400950769 /* Story.swift in Sources */,
 				1860C65E20069ED0001D08D5 /* ProjectProtocol.swift in Sources */,
 				B641BAD92009299400699C2F /* CustomError.swift in Sources */,
+				B6347584200D3FDD00C393F3 /* MainViewController.swift in Sources */,
+				B62F90BD200D49B400017405 /* BackgroundVideoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
