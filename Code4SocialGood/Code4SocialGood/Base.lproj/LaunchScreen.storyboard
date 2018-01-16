@@ -18,12 +18,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uhU-iQ-DRG">
+                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundChild" translatesAutoresizingMaskIntoConstraints="NO" id="uhU-iQ-DRG">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="C4SGLogoWhite" translatesAutoresizingMaskIntoConstraints="NO" id="yPa-pS-Pza">
+                                <rect key="frame" x="47" y="293" width="280" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="uVD-TC-yh2"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="yPa-pS-Pza" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="LhF-dN-sSA"/>
+                            <constraint firstItem="yPa-pS-Pza" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="NaB-pW-kf0"/>
+                            <constraint firstItem="uhU-iQ-DRG" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="drH-NZ-6sB"/>
+                            <constraint firstItem="uhU-iQ-DRG" firstAttribute="bottom" secondItem="Ze5-6b-2t3" secondAttribute="bottom" id="lae-jV-OZ4"/>
+                            <constraint firstItem="uhU-iQ-DRG" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailing" id="nsU-ar-5jS"/>
+                            <constraint firstItem="uhU-iQ-DRG" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="r7x-vH-2Hx"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -32,4 +45,8 @@
             <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="BackgroundChild" width="512" height="341"/>
+        <image name="C4SGLogoWhite" width="280" height="101"/>
+    </resources>
 </document>
