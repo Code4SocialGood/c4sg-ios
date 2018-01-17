@@ -17,6 +17,8 @@ class TypingLabel: UILabel {
     
     // Private properties
     private var isTypingComplete: Bool = true
+    public var isTypingStopped: Bool = true
+    private var stoppedSubstring: String?
     private var stringAttributes: [NSAttributedStringKey: Any]?
     private var currentDispatchID: Int = 900
     private let dispatchQueue = DispatchQueue(label: "TypingLabelDispatchQueue")
@@ -32,6 +34,8 @@ class TypingLabel: UILabel {
             }
             currentDispatchID += 1
             isTypingComplete = false
+            isTypingStopped = false
+            stoppedSubstring = nil
             stringAttributes = nil
             setTextWithAnimation(text: newValue, stringAttributes: stringAttributes, interval: interval, dispatchID: currentDispatchID, initialized: true)
         }
@@ -47,9 +51,31 @@ class TypingLabel: UILabel {
             }
             currentDispatchID += 1
             isTypingComplete = false
+            isTypingStopped = false
+            stoppedSubstring = nil
             stringAttributes = newValue.attributes(at: 0, effectiveRange: nil)
             setTextWithAnimation(text: newValue.string, stringAttributes: stringAttributes, interval: interval, dispatchID: currentDispatchID, initialized: true)
         }
+    }
+    
+    
+    // MARK: - Public Methods
+    
+    public func beginTyping() {
+        guard isTypingComplete == false || isTypingStopped == true else {
+            return
+        }
+        
+        guard let stoppedSubstring = stoppedSubstring else {
+            return
+        }
+        
+        isTypingStopped = false
+        setTextWithAnimation(text: stoppedSubstring, stringAttributes: stringAttributes, interval: interval, dispatchID: currentDispatchID, initialized: false)
+    }
+    
+    public func stopTyping() {
+        isTypingStopped = true
     }
     
     
@@ -58,7 +84,13 @@ class TypingLabel: UILabel {
     private func setTextWithAnimation(text: String, stringAttributes: Dictionary<NSAttributedStringKey, Any>?, interval: TimeInterval, dispatchID: Int, initialized: Bool) {
         guard text.count > 0 && currentDispatchID == dispatchID else {
             isTypingComplete = true
+            isTypingStopped = false
             delegate?.typingLabelDidComplete(self)
+            return
+        }
+        
+        guard isTypingStopped == false else {
+            stoppedSubstring = text
             return
         }
         
@@ -77,8 +109,10 @@ class TypingLabel: UILabel {
             }
             
             self.dispatchQueue.asyncAfter(deadline: .now() + interval) { [weak self] in
-                let nextString = String(text[firstCharacterIndex...])
-                self?.setTextWithAnimation(text: nextString, stringAttributes: stringAttributes, interval: interval, dispatchID: dispatchID, initialized: false)
+                if self?.isTypingStopped == false {
+                    let nextString = String(text[firstCharacterIndex...])
+                    self?.setTextWithAnimation(text: nextString, stringAttributes: stringAttributes, interval: interval, dispatchID: dispatchID, initialized: false)
+                }
             }
         }
     }
