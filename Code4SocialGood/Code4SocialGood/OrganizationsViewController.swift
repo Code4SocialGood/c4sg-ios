@@ -22,6 +22,11 @@ class OrganizationsViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "Organizations"
+        
+        let closeViewButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.stop, target: self, action: #selector(closeView))
+        navigationItem.rightBarButtonItem = closeViewButtonItem
+        
         // If we have a custom cell register it here, or you can use the storyboard to design/register the cell
         //tableView.register(OrganizationTableViewCell.self, forCellReuseIdentifier: organizationCellIdentifier)
         
@@ -51,6 +56,10 @@ class OrganizationsViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    @objc func closeView() {
+        self.dismiss(animated: true)
     }
     
     

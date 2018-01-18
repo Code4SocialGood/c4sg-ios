@@ -91,7 +91,7 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		1860C6612006A9E0001D08D5 /* Protocols */ = {
+		1860C6612006A9E0001D08D5 /* API Protocols */ = {
 			isa = PBXGroup;
 			children = (
 				1860C65320069D12001D08D5 /* OrganizationProtocol.swift */,
@@ -100,7 +100,7 @@
 				1860C65520069D39001D08D5 /* SkillProtocol.swift */,
 				1860C65B20069E9E001D08D5 /* UserProtocol.swift */,
 			);
-			name = Protocols;
+			name = "API Protocols";
 			sourceTree = "<group>";
 		};
 		188174701FFD45F300175527 = {
@@ -185,12 +185,11 @@
 		B6744AAA2004FCEC00E0A448 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1860C6612006A9E0001D08D5 /* Protocols */,
 				1881747C1FFD45F300175527 /* AppDelegate.swift */,
+				B6347583200D3FDD00C393F3 /* MainViewController.swift */,
 				1881747E1FFD45F300175527 /* ProjectsViewController.swift */,
 				188174801FFD45F300175527 /* OrganizationsViewController.swift */,
 				B64C131A2003E2210019E3B6 /* VolunteersViewController.swift */,
-				B6347583200D3FDD00C393F3 /* MainViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -241,6 +240,7 @@
 		B6D99A64200514C400092E2F /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				1860C6612006A9E0001D08D5 /* API Protocols */,
 				B6D99A65200514D600092E2F /* APIManager.swift */,
 				B6597797200669C10073AE21 /* CoreDataManager.swift */,
 			);
@@ -541,6 +541,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Code4SocialGood/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Code4SocialGood.Code4SocialGood;
@@ -556,6 +557,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Code4SocialGood/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Code4SocialGood.Code4SocialGood;
