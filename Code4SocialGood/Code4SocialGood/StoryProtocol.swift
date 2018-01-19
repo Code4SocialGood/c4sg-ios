@@ -9,8 +9,5 @@
 import Foundation
 
 protocol StoryProtocol {
-    
-    // TODO: Complete/Update the following protocols and methods within API Manager
-    
-    //func getStories(url:String)
+
 }
