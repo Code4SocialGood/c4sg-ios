@@ -17,12 +17,41 @@ protocol OrganizationProtocol {
      */
     func getOrganizations(complete: @escaping ([Organization]?, CustomError?) -> ())
     
+    /**
+     Retrieves an organization from remote server filtered by organization ID.
+     
+     - Parameter id: The ID of the organization to be searched for.
+     - Parameter complete: Returns an Array object containing an array of Organization objects if success, or an Error object if failed.
+     */
+    func getOrganizationByID(id: Int64, complete: @escaping ([Organization]?, CustomError?) -> ())
     
+    /**
+     Retrieves the total number of organizations from remote server associated to Code for Social Good.
+     
+     - Parameter complete: Returns a the number of organizations if success, or an Error object if failed.
+     */
+    func getOrganizationsCountryCount(complete: @escaping (Int64?, CustomError?) -> ())
     
-    // TODO: Complete/Update the following protocols and methods within API Manager
+    /**
+     Retrieves all organizations from remote server filtered by user ID.
+     
+     - Parameter id: The ID of the user to be searched for.
+     - Parameter complete: Returns an Array object containing an array of Organization objects if success, or an Error object if failed.
+     */
+    func getOrganizationsByUserID(id: Int64, complete: @escaping ([Organization]?, CustomError?) -> ())
     
-    //func getTotalCountries(url:String)
-    //func getOrganizationsBySearch(url:String, keyWord: String, orgCountries: [String], openOpportunities: Bool, orgStatus: String, orgCategory:[String], pageResults: Int, orgSize: Int)
-    //func getOrganizationUsersById(url: String, orgID:Int)
-    //func getOrgById(url: String, orgID: Int)
+    /**
+     Retrieves a list of organizations that were filtered by a search.
+     
+     - Parameter keyWord: String to search by.
+     - Parameter countries: Array of countries.
+     - Parameter open: Opportunities open in the organization.
+     - Parameter status: Organizations status (A: ACTIVE, C: Closed).
+     - Parameter category: Category of the organization to return.
+     - Parameter pageNumber: Results page you want to retrieve (0..N).
+     - Parameter pageSize: Number of records per page.
+     - Parameter complete: Returns an Array object containing an array of Dictionary objects if success, or an Error object if failed.
+     */
+    func getOrganizationsBySearch(keyWord: String?, countries: [String]?, open: Bool?, status: String?, category: [String]?, pageNumber: Int?, pageSize: Int?, complete: @escaping ([Organization]?, CustomError?) -> ())
+    
 }

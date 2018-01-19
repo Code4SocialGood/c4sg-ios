@@ -35,15 +35,15 @@ class APIManager: NSObject, OrganizationProtocol, ProjectProtocol, SkillProtocol
         // Organization
         let organizations: String               = "api/organizations"
         let organizationById: String            = "api/organizations/%@" // api/organizations/{id}
-        let organizationCountriesTotal: String  = "api/organizations/countries/total"
-        let organizationSearch: String          = "api/organizations/search/"
-        let organizationByUser: String          = "api/organizations/user/%@" // api/organizations/user/{id}
+        let organizationsCountriesTotal: String = "api/organizations/countries/total"
+        let organizationsByUserId: String       = "api/organizations/user/%@" // api/organizations/user/{id}
+        let organizationsSearch: String         = "api/organizations/search/"
         
         // Project
         let projects: String                = "api/projects"
         let projectById: String             = "api/projects/%@" // api/projects/{id}
-        let projectsByOrganization: String  = "api/projects/organization?organizationId=%@" // api/projects/organization?organizationId={organizationId}
-        let projectsByUser: String          = "api/projects/?userId=%@" // api/projects/?userId={userId}
+        let projectsByOrganization: String  = "api/projects/organization?organizationId=%@" // api/projects/organization?organizationId={id}
+        let projectsByUser: String          = "api/projects/?userId=%@" // api/projects/?userId={id}
         let projectApplicants: String       = "api/projects/%@/applicants" // api/projects/{id}/applicants
         let projectHeroes: String           = "api/projects/heroes"
         let projectsJobTitles: String       = "api/projects/jobTitles"
@@ -167,6 +167,131 @@ class APIManager: NSObject, OrganizationProtocol, ProjectProtocol, SkillProtocol
                     complete(nil, CustomError(code: 0, title: nil, description: errorString))
                 }
         }
+    }
+    
+    public func getOrganizationsCountryCount(complete: @escaping (Int64?, CustomError?) -> ()) {
+        let urlString = "\(apiURL)\(apiEndpoints.organizationsCountriesTotal)"
+        print("  --> GET Organizations Country Count: \(urlString)")
+        
+        let parameters: Parameters? = nil // Use this when we want to pass parameters to the call
+        let headers = getHTTPHeaders()
+        
+        Alamofire.request(urlString, method: .get, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .responseJSON { response in
+                if (response.result.isSuccess) {
+                    
+                    // Test if we get an error response from the server
+                    if let error = self.testResponseForError(response.result.value as AnyObject) {
+                        complete(nil, error)
+                        return
+                    }
+                    
+                    // Verify we have results
+                    if let dictionary = response.result.value as? [AnyHashable: Any] {
+                        if let totalString: String = dictionary["total"] as? String {
+                            let totalInt = Int64(totalString)
+                            complete(totalInt, nil)
+                        }
+                        else {
+                            complete(0, nil)
+                        }
+                    }
+                    else {
+                        let errorString = "This did not return a dictionary."
+                        complete(nil, CustomError(code: 0, title: nil, description: errorString))
+                    }
+                }
+                else {
+                    let errorString = "There is an error getting data"
+                    complete(nil, CustomError(code: 0, title: nil, description: errorString))
+                }
+        }
+    }
+    
+    public func getOrganizationsByUserID(id: Int64, complete: @escaping ([Organization]?, CustomError?) -> ()) {
+        let urlString = String(format: "\(apiURL)\(apiEndpoints.organizationsByUserId)", String(id))
+        print("  --> GET Organizations By User ID: \(urlString)")
+        
+        let parameters: Parameters? = nil
+        let headers = getHTTPHeaders()
+        
+        Alamofire.request(urlString, method: .get, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .responseJSON { response in
+                if (response.result.isSuccess) {
+                    
+                    // Test if we get an error response from the server
+                    if let error = self.testResponseForError(response.result.value as AnyObject) {
+                        complete(nil, error)
+                        return
+                    }
+                    
+                    // Verify we have results
+                    if let array = response.result.value as? [Any] {
+                        var organizations: [Organization] = []
+                        for object in array {
+                            // Create the organization model and add to temporary store
+                            if let organization = Mapper<Organization>().map(JSON: object as! [String: Any]) {
+                                organizations.append(organization)
+                            }
+                        }
+                        
+                        // Sort the array we just set
+                        organizations = organizations.sorted(by: { $0.id < $1.id })
+                        
+                        complete(organizations, nil)
+                    }
+                    else if let _ = response.result.value as? [AnyHashable: Any] {
+                        let errorString = "This returned a dictionary.  You'll need to handle this differently."
+                        complete(nil, CustomError(code: 0, title: nil, description: errorString))
+                    }
+                }
+                else {
+                    let errorString = "There is an error getting data"
+                    complete(nil, CustomError(code: 0, title: nil, description: errorString))
+                }
+        }
+    }
+    
+    public func getOrganizationsBySearch(keyWord: String?, countries: [String]?, open: Bool?, status: String?, category: [String]?, pageNumber: Int?, pageSize: Int?, complete: @escaping ([Organization]?, CustomError?) -> ()) {
+        var useAmp = false
+        var urlString = "\(apiURL)\(apiEndpoints.organizationsSearch)?"
+        if let keyWord = keyWord {
+            urlString = urlString+"keyWord=\(keyWord)"
+            useAmp = true
+        }
+        if let countries = countries {
+            let countriesString = countries.map { String($0) }.joined(separator: ",")
+            urlString = (useAmp) ? urlString+"&countries=\(countriesString)" : urlString+"countries=\(countriesString)"
+            useAmp = true
+        }
+        if let open = open {
+            urlString = (useAmp) ? urlString+"&skills=\(open)" : urlString+"skills=\(open)"
+            useAmp = true
+        }
+        if let status = status {
+            urlString = (useAmp) ? urlString+"&status=\(status)" : urlString+"status=\(status)"
+            useAmp = true
+        }
+        if let category = category {
+            let categoryString = category.map { String($0) }.joined(separator: ",")
+            urlString = (useAmp) ? urlString+"&category=\(categoryString)" : urlString+"category=\(categoryString)"
+            useAmp = true
+        }
+        if let pageNumber = pageNumber {
+            urlString = (useAmp) ? urlString+"&page=\(pageNumber)" : urlString+"page=\(pageNumber)"
+            useAmp = true
+        }
+        if let pageSize = pageSize {
+            urlString = (useAmp) ? urlString+"&size=\(pageSize)" : urlString+"size=\(pageSize)"
+            useAmp = true
+        }
+        print("  --> GET Organizations By Search: \(urlString)")
+     
+        // TODO: Build out pagination for returning search data
     }
     
     
@@ -513,6 +638,7 @@ class APIManager: NSObject, OrganizationProtocol, ProjectProtocol, SkillProtocol
         }
         print("  --> GET Projects By Search: \(urlString)")
         
+        // TODO: Build out pagination for returning search data
         
     }
     

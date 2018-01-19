@@ -16,7 +16,7 @@ class VolunteersViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var tableView: UITableView?
     let volunteerCellIdentifier = "VolunteerCellIdentifier"
     
-    var users: [User] = [] // TODO: Refactor this eventually to use CoreData and fetch controllers.
+    var users: [User] = []
     
     
     override func viewDidLoad() {

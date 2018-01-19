@@ -16,7 +16,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableView: UITableView?
     let projectCellIdentifier = "ProjectCellIdentifier"
 
-    var projects: [Project] = [] // TODO: Refactor this eventually to use CoreData and fetch controllers.
+    var projects: [Project] = []
     
     
     override func viewDidLoad() {

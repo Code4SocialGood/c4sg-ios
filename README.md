@@ -9,47 +9,32 @@ Code for Social Good is a global platform to connect nonprofits and open source 
 
 ### Getting Started
 
-To get started, please create your own development branch from the project's development branch. After cloning the branch you will want to go into the project and open the Code4SocialGood.xcworkspace file.
+To get started, please fork the master branch to your own development repo.  After forking, you'll want to go into the project and open the Code4SocialGood.xcworkspace file.
 
-The reason why we are using the Code4SocialGood.xcworkspace file over the traditional .xcodeproj file is because this is what is created when CocoaPods are used in a project.
-
-What are CocoaPods?
-
-If you have never worked with a package manager before this is what CocoaPods are for iOS.
-
-If you have worked with a package manager before like Maven, NuGet, NPM, etc. then this is the equivalent to iOS as it manages our dependencies. CocoaPods are configured through a file called a PodFile and we use terminal commands in order to get our pods.
-
-To make things easier, the CocoaPods to get started have already been configured to the project but there may be a need to have more in the future depending on requirements.  There will be an opportunity to use this feature.  If you have questions about Cocoa Pods reach out to Brian Andreasen on slack.
-
-How to Install CocoaPods?
-
-Please visit https://guides.cocoapods.org/using/getting-started.html
+We are using the Xcode workspace over the traditional Xcode project file because we are using CocoaPods for package/library management.  If you do not have CocoaPods installed on your development machine, please visit the [CocoaPod website](https://guides.cocoapods.org/using/getting-started.html) for more details.
 
 ### Prerequisites
 
-- XCode
-- iOS Simulator or Live device for testing purposes (It's highly recommended to use a live device in the later stages).
+- Latest version of Xcode
+- iOS Simulator or real device
+ - It's recommended to use a real device for testing, although an Apple developer account will be required for device testing.
 - CocoaPods
-- GitHub or GitHub Desktop
-- Willingness to learn together to create something awesome.
+- GitHub account
+- Willingness to learn together and create something awesome
 
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running
+If you're completely new to iOS development, don't get discouraged!  Here are a few step by step examples to get you on your way with Xcode.
 
-1. Check your first to see if you have XCode installed most iOS developers should already have this installed.
-2. To check if XCode is installed click on 'Finder' then click on 'Go' in the menu bar next it should dropdown and you should be able to see applications. Click on applications.
-  If you don't have XCode installed you will need to install it from the Mac App Store.
-
-  Mac App Store Link: https://itunes.apple.com/us/app/xcode/id497799835?mt=12
-
-  This will take some time to download and may require OS updates in order to install.
-  If Xcode requires a minor OS update you should be safe to install.
-  If XCode requires a MAJOR Mac OS update please backup your information using Time Machine to an external hard disk or only backup the pertinent information that is important prior to proceeding with an OS update.
-  A major OS update that fails may require the hard disk to be formatted(erased) and re-partitioned in order to re-install properly.
-
-3. Once XCode has been installed you're now ready to get going!
-
+0. Check your first to see if you have Xcode installed.
+0. To check if Xcode is installed click on 'Finder' then click on 'Go' in the menu bar next it should dropdown and you should be able to see applications. Click on applications.
+ - If you don't have Xcode installed you will need to install it from the Mac App Store.
+    - [Mac App Store Link](https://itunes.apple.com/us/app/xcode/id497799835?mt=12)
+    - This will take some time to download and may require OS updates in order to install.
+ - If Xcode requires a minor Mac OS update you should be safe to install.
+ - If Xcode requires a major Mac OS update please backup your information using Time Machine or other means to an external hard disk or backup any pertinent information that is important prior to proceeding with an OS update.
+0. Once Xcode has been installed, open the application and, if needed, download the libraries necessary.
+0. Once you've downloaded the libraries needed to use Xcode, you're now ready to get going!
 
 ### Automated Testing / Unit Tests
 
@@ -57,7 +42,7 @@ We are not currently running automated tests or unit tests yet as we are still g
 
 ### Versioning
 
-GitHub is used for version control a basic knowledge of GitHub on how to create a branch, commit, and perform pull requests is not assumed and if you need help with these features please reach out to help on the Slack community channel for the c4sg-ios project.
+GitHub is used for our version control.  A basic knowledge of GitHub is required but not assumed.  If you need help with GitHub, please reach out for help on the Slack community channel for the *c4sg-ios* project.
 
 ### Questions
 
@@ -65,8 +50,8 @@ Please reach to use on our [Slack channel](http://join-our-slack.code4socialgood
 
 ### Authors
 
-- Jenny - Initial work - PurpleBooth
-- Brian Andreasen - Initial Project Setup and branch setup for development.
+- Jenny - PurpleBooth
+- Brian Andreasen - iOS Development
 - Derek Carter - iOS Development
 - *Join Us!*
 

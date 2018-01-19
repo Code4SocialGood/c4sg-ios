@@ -16,7 +16,7 @@ class OrganizationsViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var tableView: UITableView?
     let organizationCellIdentifier = "OrganizationCellIdentifier"
     
-    var organizations: [Organization] = [] // TODO: Refactor this eventually to use CoreData and fetch controllers.
+    var organizations: [Organization] = []
     
     
     override func viewDidLoad() {
