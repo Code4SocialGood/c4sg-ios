@@ -15,21 +15,29 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     // Table view properties
     @IBOutlet weak var tableView: UITableView?
     let projectCellIdentifier = "ProjectCellIdentifier"
-
+    
+    // Project properties
     var projects: [Project] = []
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Projects"
+        self.navigationItem.title = "Projects"
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        //navigationItem.largeTitleDisplayMode = .never  // Use this for detailed views
         
-        let closeViewButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.stop, target: self, action: #selector(closeView))
-        navigationItem.rightBarButtonItem = closeViewButtonItem
+        let searchButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.search, target: self, action: #selector(searchButtonClicked))
+        navigationItem.rightBarButtonItem = searchButtonItem
         
-        // If we have a custom cell register it here, or you can use the storyboard to design/register the cell
-        //tableView.register(ProjectTableViewCell.self, forCellReuseIdentifier: projectCellIdentifier)
-      
+        // Setup table view
+        tableView?.separatorStyle = .none
+        tableView?.estimatedRowHeight = 150.0
+        tableView?.rowHeight = UITableViewAutomaticDimension
+        tableView?.register(UINib(nibName: "ProjectTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: projectCellIdentifier)
+        tableView?.allowsSelection = false
+        
+        // Get all projects
         APIManager.shared.getProjects() { (projects, error) in
             if let error = error {
                 print("Error: \(error.localizedDescription)")
@@ -40,26 +48,13 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
                 self.tableView?.reloadData()
             }
         }
-        
-        /*
-        APIManager.shared.getProjectByID(id: 82) { (projects, error) in
-            if let error = error {
-                print("Error: \(error.localizedDescription)")
-                return
-            }
-            if let projects = projects {
-                self.projects = projects
-                self.tableView?.reloadData()
-            }
-        }*/
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
-    @objc func closeView() {
-        self.dismiss(animated: true)
+    
+    // MARK: - Button Action Methods
+    
+    @objc func searchButtonClicked() {
+        
     }
     
     
@@ -74,20 +69,10 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: projectCellIdentifier)!
+        let cell = ProjectTableViewCell.dequeue(fromTableView: tableView, withIdentifier: projectCellIdentifier, atIndexPath: indexPath) as ProjectTableViewCell
         
-        // Get project for row
-        let project = self.projects[indexPath.row]
-        
-        // Set cell title
-        var cellTitle: String?
-        if let id = project.id, let name = project.name {
-            cellTitle = "\(id) - \(name)"
-        }
-        else if let id = project.id {
-            cellTitle = "\(id) - (Missing name)"
-        }
-        cell.textLabel?.text = cellTitle
+        // Set project for row
+        cell.project = self.projects[indexPath.row]
         
         return cell
     }
@@ -96,11 +81,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: - UITableViewDelegate Methods
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50.0
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        return UITableViewAutomaticDimension
     }
     
 }
