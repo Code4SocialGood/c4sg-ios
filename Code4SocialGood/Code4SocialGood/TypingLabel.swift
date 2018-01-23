@@ -120,8 +120,7 @@ class TypingLabel: UILabel {
 }
 
 
-
-// MARK: TypingLabelDelegate
+// MARK: - TypingLabelDelegate
 
 protocol TypingLabelDelegate {
     func typingLabelDidComplete(_ label: TypingLabel)

@@ -11,6 +11,8 @@ import CoreMotion
 
 class BaseTableViewCell: UITableViewCell {
     
+    open var delegate: BaseTableViewCellDelegate? = nil
+    
     // Shadow view propertis
     private weak var shadowView: UIView?
     private static let kShadowViewInnerMargin: CGFloat = 14.0
@@ -122,6 +124,9 @@ class BaseTableViewCell: UITableViewCell {
                         self.transform = CGAffineTransform(scaleX: 0.96, y: 0.96)
         },
                        completion: { (finished) in
+                        
+                        self.delegate?.cellDidFinishSingleTap(self)
+                        
                         UIView.animate(withDuration: 0.2,
                                        delay: 0.0,
                                        usingSpringWithDamping: 0.8,
@@ -133,7 +138,8 @@ class BaseTableViewCell: UITableViewCell {
                                        completion: { (finished) in
                                         self.isTapped = false
                                         
-                                        // TODO: Create the delegate for handling the tap ended
+                                        // TODO: Once the flow of the app is more put together, test if the delegate should be before or after the finish animation.
+                                        
                         })
         })
     }
@@ -153,6 +159,9 @@ class BaseTableViewCell: UITableViewCell {
         }
         
         isLongPressed = true
+        
+        self.delegate?.cellDidBeginLongPress(self)
+        
         UIView.animate(withDuration: 0.5,
                        delay: 0.0,
                        usingSpringWithDamping: 0.8,
@@ -162,7 +171,7 @@ class BaseTableViewCell: UITableViewCell {
                         self.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
         },
                        completion: { (finished) in
-                        // TODO: Create the delegate for handling long press began
+                        self.delegate?.cellDidFinishLongPress(self)
         })
     }
     
@@ -182,8 +191,17 @@ class BaseTableViewCell: UITableViewCell {
                        completion: { (finished) in
                         self.isLongPressed = false
                         
-                        // TODO: Create the delegate for handling long press ended
+                        // TODO: Once the flow of the app is more put together, test if the delegate should be before or after the finish animation.
         })
     }
     
+}
+
+
+// MARK: - BaseTableViewCellDelegate
+
+protocol BaseTableViewCellDelegate {
+    func cellDidFinishSingleTap(_ cell: UITableViewCell)
+    func cellDidBeginLongPress(_ cell: UITableViewCell)
+    func cellDidFinishLongPress(_ cell: UITableViewCell)
 }

@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class ProjectsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ProjectsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, BaseTableViewCellDelegate {
     
     // Table view properties
     @IBOutlet weak var tableView: UITableView?
@@ -73,6 +73,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         
         // Set project for row
         cell.project = self.projects[indexPath.row]
+        cell.delegate = self
         
         return cell
     }
@@ -82,6 +83,21 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
+    }
+    
+    
+    // MARK: - BaseTableViewCellDelegate Methods
+    
+    func cellDidFinishSingleTap(_ cell: UITableViewCell) {
+        // Present the project view in a new view controller here
+    }
+    
+    func cellDidBeginLongPress(_ cell: UITableViewCell) {
+        // Prepare the view for a the project preview (See App Store app for idea)
+    }
+    
+    func cellDidFinishLongPress(_ cell: UITableViewCell) {
+        // Display the project preview view for a the project
     }
     
 }
