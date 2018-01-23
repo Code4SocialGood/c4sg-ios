@@ -10,11 +10,13 @@ import UIKit
 
 class ProjectTableViewCell: BaseTableViewCell {
     
-    // Cell properties
+    // Private properties
+    let defaultImageName = "C4SGLogoDark"
     @IBOutlet private weak var projectImageView: UIImageView!
     @IBOutlet private weak var projectName: UILabel!
-    @IBOutlet private weak var projectDescription: UITextView!
+    @IBOutlet private weak var projectDescription: UILabel!
     
+    // Public project properties
     public weak var project: Project? = nil {
         didSet {
             if let project = project {
@@ -30,11 +32,11 @@ class ProjectTableViewCell: BaseTableViewCell {
                 }
                 
                 // Set project image
-                if let _ = project.imageUrl {
-                    projectImageView.image = UIImage(named: "C4SGLogoSmall")! // TODO: Async load the image via url
+                if let imageUrl = project.imageUrl {
+                    projectImageView.loadAsyncImageFrom(url: imageUrl, withPlaceholder: UIImage(named: defaultImageName))
                 }
                 else {
-                    projectImageView.image = UIImage(named: "C4SGLogoSmall")!
+                    projectImageView.image = UIImage(named: defaultImageName)!
                 }
                 
                 // Set project description
