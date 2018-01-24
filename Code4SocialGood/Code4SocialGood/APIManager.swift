@@ -322,7 +322,10 @@ class APIManager: NSObject, OrganizationProtocol, ProjectProtocol, SkillProtocol
                         for object in array {
                             // Create the project model and add to temporary store
                             if let project = Mapper<Project>().map(JSON: object as! [String: Any]) {
-                                projects.append(project)
+                                // Add only projects with names and descriptions
+                                if let name = project.name, name.count > 0, let desc = project.projectDescription, desc.count > 0 {
+                                    projects.append(project)
+                                }
                             }
                         }
                         

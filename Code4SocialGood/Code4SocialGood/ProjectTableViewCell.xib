@@ -23,18 +23,22 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="opt-D3-2RJ">
                         <rect key="frame" x="10" y="10" width="519" height="112.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gKl-mw-ERj">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gKl-mw-ERj" customClass="AlignedImageView" customModule="Code4SocialGood" customModuleProvider="target">
                                 <rect key="frame" x="8" y="8" width="90" height="90"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="90" id="9z4-Li-TGK"/>
                                     <constraint firstAttribute="height" constant="90" id="uRP-a1-fDk"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="alignTop" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Project Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6nV-Dq-qyN">
                                 <rect key="frame" x="114" y="8" width="397" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="8NI-qw-iev"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="60" id="8NI-qw-iev"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="OaR-kT-KqQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
@@ -43,6 +47,9 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pJS-Qb-wYm">
                                 <rect key="frame" x="114" y="41" width="397" height="63.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="8wd-sN-Raz"/>
+                                </constraints>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
@@ -59,7 +66,7 @@
                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="190" id="PLq-RW-2ET"/>
                             <constraint firstItem="pJS-Qb-wYm" firstAttribute="top" secondItem="6nV-Dq-qyN" secondAttribute="bottom" constant="8" id="We9-6V-b4v"/>
                             <constraint firstAttribute="trailing" secondItem="pJS-Qb-wYm" secondAttribute="trailing" constant="8" id="XxR-kE-teJ"/>
-                            <constraint firstAttribute="bottom" secondItem="pJS-Qb-wYm" secondAttribute="bottom" constant="8" id="aQS-Ci-mWD"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="pJS-Qb-wYm" secondAttribute="bottom" constant="8" id="aQS-Ci-mWD"/>
                             <constraint firstItem="6nV-Dq-qyN" firstAttribute="trailing" secondItem="opt-D3-2RJ" secondAttribute="trailingMargin" id="kOh-BE-KVx"/>
                             <constraint firstItem="6nV-Dq-qyN" firstAttribute="leading" secondItem="gKl-mw-ERj" secondAttribute="trailing" constant="16" id="vfE-is-qGl"/>
                         </constraints>

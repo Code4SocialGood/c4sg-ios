@@ -12,7 +12,7 @@ class ProjectTableViewCell: BaseTableViewCell {
     
     // Private properties
     let defaultImageName = "C4SGLogoDark"
-    @IBOutlet private weak var projectImageView: UIImageView!
+    @IBOutlet private weak var projectImageView: AlignedImageView!
     @IBOutlet private weak var projectName: UILabel!
     @IBOutlet private weak var projectDescription: UILabel!
     

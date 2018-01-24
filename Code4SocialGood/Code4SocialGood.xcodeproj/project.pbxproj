@@ -32,6 +32,7 @@
 		B65277A82007A50C00FF91C7 /* Code4SocialGood.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B65277A62007A50C00FF91C7 /* Code4SocialGood.xcdatamodeld */; };
 		B6597798200669C10073AE21 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6597797200669C10073AE21 /* CoreDataManager.swift */; };
 		B659779B20067C300073AE21 /* EntityObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B659779A20067C300073AE21 /* EntityObjectMapper.swift */; };
+		B68DA8272018D4E500166C5D /* AlignedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68DA8262018D4E500166C5D /* AlignedImageView.swift */; };
 		B6C0DB0D200503DD00950769 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C0DB0C200503DD00950769 /* Organization.swift */; };
 		B6C0DB0F2005068F00950769 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C0DB0E2005068F00950769 /* Project.swift */; };
 		B6C0DB112005076300950769 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C0DB102005076300950769 /* User.swift */; };
@@ -70,6 +71,7 @@
 		B65277A72007A50C00FF91C7 /* Code4SocialGood.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Code4SocialGood.xcdatamodel; sourceTree = "<group>"; };
 		B6597797200669C10073AE21 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		B659779A20067C300073AE21 /* EntityObjectMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityObjectMapper.swift; sourceTree = "<group>"; };
+		B68DA8262018D4E500166C5D /* AlignedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignedImageView.swift; sourceTree = "<group>"; };
 		B6C0DB0C200503DD00950769 /* Organization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
 		B6C0DB0E2005068F00950769 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		B6C0DB102005076300950769 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				B62F90BE200D4B5700017405 /* Storyboards */,
+				B68DA8262018D4E500166C5D /* AlignedImageView.swift */,
 				B62F90BC200D49B400017405 /* BackgroundVideoView.swift */,
 				B62F90C2200D5ABC00017405 /* TypingLabel.swift */,
 				B647DFA620164C250031D196 /* BaseTableViewCell.swift */,
@@ -417,6 +420,7 @@
 				B6C0DB0D200503DD00950769 /* Organization.swift in Sources */,
 				B64C131B2003E2210019E3B6 /* VolunteersViewController.swift in Sources */,
 				B659779B20067C300073AE21 /* EntityObjectMapper.swift in Sources */,
+				B68DA8272018D4E500166C5D /* AlignedImageView.swift in Sources */,
 				B6C0DB0F2005068F00950769 /* Project.swift in Sources */,
 				B63A45042017E62400324AE6 /* UIImageView.swift in Sources */,
 				B6597798200669C10073AE21 /* CoreDataManager.swift in Sources */,
