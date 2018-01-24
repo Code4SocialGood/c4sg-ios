@@ -22,8 +22,12 @@
 		B62F90BD200D49B400017405 /* BackgroundVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62F90BC200D49B400017405 /* BackgroundVideoView.swift */; };
 		B62F90C3200D5ABC00017405 /* TypingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62F90C2200D5ABC00017405 /* TypingLabel.swift */; };
 		B6347584200D3FDD00C393F3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6347583200D3FDD00C393F3 /* MainViewController.swift */; };
+		B63A45042017E62400324AE6 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63A45032017E62400324AE6 /* UIImageView.swift */; };
 		B63D0ED92005087500A594A5 /* Skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63D0ED82005087500A594A5 /* Skill.swift */; };
 		B641BAD92009299400699C2F /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B641BAD82009299400699C2F /* CustomError.swift */; };
+		B647DFA720164C250031D196 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647DFA620164C250031D196 /* BaseTableViewCell.swift */; };
+		B647DFAA20164F540031D196 /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647DFA820164F540031D196 /* ProjectTableViewCell.swift */; };
+		B647DFAB20164F540031D196 /* ProjectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B647DFA920164F540031D196 /* ProjectTableViewCell.xib */; };
 		B64C131B2003E2210019E3B6 /* VolunteersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64C131A2003E2210019E3B6 /* VolunteersViewController.swift */; };
 		B65277A82007A50C00FF91C7 /* Code4SocialGood.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B65277A62007A50C00FF91C7 /* Code4SocialGood.xcdatamodeld */; };
 		B6597798200669C10073AE21 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6597797200669C10073AE21 /* CoreDataManager.swift */; };
@@ -56,8 +60,12 @@
 		B62F90BC200D49B400017405 /* BackgroundVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundVideoView.swift; sourceTree = "<group>"; };
 		B62F90C2200D5ABC00017405 /* TypingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingLabel.swift; sourceTree = "<group>"; };
 		B6347583200D3FDD00C393F3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		B63A45032017E62400324AE6 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		B63D0ED82005087500A594A5 /* Skill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skill.swift; sourceTree = "<group>"; };
 		B641BAD82009299400699C2F /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
+		B647DFA620164C250031D196 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		B647DFA820164F540031D196 /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
+		B647DFA920164F540031D196 /* ProjectTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectTableViewCell.xib; sourceTree = "<group>"; };
 		B64C131A2003E2210019E3B6 /* VolunteersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteersViewController.swift; sourceTree = "<group>"; };
 		B65277A72007A50C00FF91C7 /* Code4SocialGood.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Code4SocialGood.xcdatamodel; sourceTree = "<group>"; };
 		B6597797200669C10073AE21 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -128,6 +136,7 @@
 				B6744AAB2004FCF400E0A448 /* View */,
 				B6744AAD2004FD1000E0A448 /* Model */,
 				B6D99A64200514C400092E2F /* Managers */,
+				B63A45052017E62900324AE6 /* Extensions */,
 				B659779920067C150073AE21 /* Utilities */,
 				B6744AAE2004FD1E00E0A448 /* Supporting Files */,
 			);
@@ -166,6 +175,14 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
+		B63A45052017E62900324AE6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B63A45032017E62400324AE6 /* UIImageView.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		B65277A52007A4E900FF91C7 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,8 +204,8 @@
 			children = (
 				1881747C1FFD45F300175527 /* AppDelegate.swift */,
 				B6347583200D3FDD00C393F3 /* MainViewController.swift */,
-				1881747E1FFD45F300175527 /* ProjectsViewController.swift */,
 				188174801FFD45F300175527 /* OrganizationsViewController.swift */,
+				1881747E1FFD45F300175527 /* ProjectsViewController.swift */,
 				B64C131A2003E2210019E3B6 /* VolunteersViewController.swift */,
 			);
 			name = Controller;
@@ -200,6 +217,9 @@
 				B62F90BE200D4B5700017405 /* Storyboards */,
 				B62F90BC200D49B400017405 /* BackgroundVideoView.swift */,
 				B62F90C2200D5ABC00017405 /* TypingLabel.swift */,
+				B647DFA620164C250031D196 /* BaseTableViewCell.swift */,
+				B647DFA820164F540031D196 /* ProjectTableViewCell.swift */,
+				B647DFA920164F540031D196 /* ProjectTableViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -311,6 +331,7 @@
 			files = (
 				B62F90BA200D44BC00017405 /* BackgroundVideo.mp4 in Resources */,
 				188174891FFD45F300175527 /* LaunchScreen.storyboard in Resources */,
+				B647DFAB20164F540031D196 /* ProjectTableViewCell.xib in Resources */,
 				188174861FFD45F300175527 /* Assets.xcassets in Resources */,
 				188174841FFD45F300175527 /* Main.storyboard in Resources */,
 			);
@@ -388,6 +409,7 @@
 				B6D99A66200514D600092E2F /* APIManager.swift in Sources */,
 				1860C65620069D39001D08D5 /* SkillProtocol.swift in Sources */,
 				1860C65820069D5D001D08D5 /* StoryProtocol.swift in Sources */,
+				B647DFAA20164F540031D196 /* ProjectTableViewCell.swift in Sources */,
 				1860C65C20069E9E001D08D5 /* UserProtocol.swift in Sources */,
 				1881747F1FFD45F300175527 /* ProjectsViewController.swift in Sources */,
 				B65277A82007A50C00FF91C7 /* Code4SocialGood.xcdatamodeld in Sources */,
@@ -396,11 +418,13 @@
 				B64C131B2003E2210019E3B6 /* VolunteersViewController.swift in Sources */,
 				B659779B20067C300073AE21 /* EntityObjectMapper.swift in Sources */,
 				B6C0DB0F2005068F00950769 /* Project.swift in Sources */,
+				B63A45042017E62400324AE6 /* UIImageView.swift in Sources */,
 				B6597798200669C10073AE21 /* CoreDataManager.swift in Sources */,
 				B6C0DB112005076300950769 /* User.swift in Sources */,
 				B6C0DB13200507F400950769 /* Story.swift in Sources */,
 				1860C65E20069ED0001D08D5 /* ProjectProtocol.swift in Sources */,
 				B641BAD92009299400699C2F /* CustomError.swift in Sources */,
+				B647DFA720164C250031D196 /* BaseTableViewCell.swift in Sources */,
 				B6347584200D3FDD00C393F3 /* MainViewController.swift in Sources */,
 				B62F90BD200D49B400017405 /* BackgroundVideoView.swift in Sources */,
 			);

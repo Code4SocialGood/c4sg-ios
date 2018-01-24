@@ -22,10 +22,11 @@ class OrganizationsViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Organizations"
+        self.navigationItem.title = "Organizations"
+        self.navigationController?.navigationBar.prefersLargeTitles = true
         
-        let closeViewButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.stop, target: self, action: #selector(closeView))
-        navigationItem.rightBarButtonItem = closeViewButtonItem
+        let searchButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.search, target: self, action: #selector(searchButtonClicked))
+        navigationItem.rightBarButtonItem = searchButtonItem
         
         // If we have a custom cell register it here, or you can use the storyboard to design/register the cell
         //tableView.register(OrganizationTableViewCell.self, forCellReuseIdentifier: organizationCellIdentifier)
@@ -54,12 +55,11 @@ class OrganizationsViewController: UIViewController, UITableViewDelegate, UITabl
         }*/
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
-    @objc func closeView() {
-        self.dismiss(animated: true)
+    // MARK: - Button Action Methods
+    
+    @objc func searchButtonClicked() {
+        
     }
     
     
