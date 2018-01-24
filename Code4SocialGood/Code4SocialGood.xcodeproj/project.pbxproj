@@ -30,6 +30,8 @@
 		B647DFAB20164F540031D196 /* ProjectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B647DFA920164F540031D196 /* ProjectTableViewCell.xib */; };
 		B64C131B2003E2210019E3B6 /* VolunteersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64C131A2003E2210019E3B6 /* VolunteersViewController.swift */; };
 		B65277A82007A50C00FF91C7 /* Code4SocialGood.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B65277A62007A50C00FF91C7 /* Code4SocialGood.xcdatamodeld */; };
+		B654618B2018F3BE000A9069 /* PaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B654618A2018F3BE000A9069 /* PaddedLabel.swift */; };
+		B654618D2018F62B000A9069 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B654618C2018F62B000A9069 /* UIView.swift */; };
 		B6597798200669C10073AE21 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6597797200669C10073AE21 /* CoreDataManager.swift */; };
 		B659779B20067C300073AE21 /* EntityObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B659779A20067C300073AE21 /* EntityObjectMapper.swift */; };
 		B68DA8272018D4E500166C5D /* AlignedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68DA8262018D4E500166C5D /* AlignedImageView.swift */; };
@@ -69,6 +71,8 @@
 		B647DFA920164F540031D196 /* ProjectTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectTableViewCell.xib; sourceTree = "<group>"; };
 		B64C131A2003E2210019E3B6 /* VolunteersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteersViewController.swift; sourceTree = "<group>"; };
 		B65277A72007A50C00FF91C7 /* Code4SocialGood.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Code4SocialGood.xcdatamodel; sourceTree = "<group>"; };
+		B654618A2018F3BE000A9069 /* PaddedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedLabel.swift; sourceTree = "<group>"; };
+		B654618C2018F62B000A9069 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		B6597797200669C10073AE21 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		B659779A20067C300073AE21 /* EntityObjectMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityObjectMapper.swift; sourceTree = "<group>"; };
 		B68DA8262018D4E500166C5D /* AlignedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignedImageView.swift; sourceTree = "<group>"; };
@@ -181,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				B63A45032017E62400324AE6 /* UIImageView.swift */,
+				B654618C2018F62B000A9069 /* UIView.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -219,6 +224,7 @@
 				B62F90BE200D4B5700017405 /* Storyboards */,
 				B68DA8262018D4E500166C5D /* AlignedImageView.swift */,
 				B62F90BC200D49B400017405 /* BackgroundVideoView.swift */,
+				B654618A2018F3BE000A9069 /* PaddedLabel.swift */,
 				B62F90C2200D5ABC00017405 /* TypingLabel.swift */,
 				B647DFA620164C250031D196 /* BaseTableViewCell.swift */,
 				B647DFA820164F540031D196 /* ProjectTableViewCell.swift */,
@@ -411,6 +417,7 @@
 				1860C65420069D12001D08D5 /* OrganizationProtocol.swift in Sources */,
 				B6D99A66200514D600092E2F /* APIManager.swift in Sources */,
 				1860C65620069D39001D08D5 /* SkillProtocol.swift in Sources */,
+				B654618B2018F3BE000A9069 /* PaddedLabel.swift in Sources */,
 				1860C65820069D5D001D08D5 /* StoryProtocol.swift in Sources */,
 				B647DFAA20164F540031D196 /* ProjectTableViewCell.swift in Sources */,
 				1860C65C20069E9E001D08D5 /* UserProtocol.swift in Sources */,
@@ -428,6 +435,7 @@
 				B6C0DB13200507F400950769 /* Story.swift in Sources */,
 				1860C65E20069ED0001D08D5 /* ProjectProtocol.swift in Sources */,
 				B641BAD92009299400699C2F /* CustomError.swift in Sources */,
+				B654618D2018F62B000A9069 /* UIView.swift in Sources */,
 				B647DFA720164C250031D196 /* BaseTableViewCell.swift in Sources */,
 				B6347584200D3FDD00C393F3 /* MainViewController.swift in Sources */,
 				B62F90BD200D49B400017405 /* BackgroundVideoView.swift in Sources */,
