@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Alamofire
-import SwiftyJSON
 
 class ProjectsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, BaseTableViewCellDelegate {
     
@@ -24,6 +22,10 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         
         self.navigationItem.title = "Projects"
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.navigationBar.prefersLargeTitles = true
         //navigationItem.largeTitleDisplayMode = .never  // Use this for detailed views
         
@@ -80,6 +82,42 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     // MARK: - UITableViewDelegate Methods
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if self.projects.count > 0 {
+            return 34
+        }
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = UIColor.white
+        view.addBorders(edges: [.bottom], color: UIColor(white: 0.9, alpha: 1.0), thickness: 1.0)
+        
+        let label = PaddedLabel.init(insets: 0, 0, 16, 16)
+        label.backgroundColor = UIColor.clear
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = NSTextAlignment.left
+        label.font = UIFont.systemFont(ofSize: 15.0)
+        label.text = "\(self.projects.count) Projects Found"
+        view.addSubview(label)
+        
+        // Constraint view dictionaries
+        let viewsDict = [
+            "label": label
+        ]
+        
+        // Horizontal constraints
+        let headerHorizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[label]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewsDict)
+        view.addConstraints(headerHorizontalConstraints)
+        
+        // Vertical constraints
+        let headerVerticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|[label]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewsDict)
+        view.addConstraints(headerVerticalConstraints)
+        
+        return view
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
