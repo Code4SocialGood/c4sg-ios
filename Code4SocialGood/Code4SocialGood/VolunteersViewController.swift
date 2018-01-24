@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Alamofire
-import SwiftyJSON
 
 class VolunteersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
