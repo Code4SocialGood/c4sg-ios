@@ -20,7 +20,6 @@ class VolunteersViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "Volunteers"
         self.navigationController?.navigationBar.prefersLargeTitles = true
         
         let searchButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.search, target: self, action: #selector(searchButtonClicked))
@@ -51,6 +50,10 @@ class VolunteersViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.tableView?.reloadData()
             }
         }*/
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
     }
     
     

@@ -20,7 +20,6 @@ class OrganizationsViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "Organizations"
         self.navigationController?.navigationBar.prefersLargeTitles = true
         
         let searchButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.search, target: self, action: #selector(searchButtonClicked))
@@ -53,6 +52,9 @@ class OrganizationsViewController: UIViewController, UITableViewDelegate, UITabl
         }*/
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+    }
     
     // MARK: - Button Action Methods
     

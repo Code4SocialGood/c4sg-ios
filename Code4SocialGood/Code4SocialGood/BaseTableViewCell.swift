@@ -99,7 +99,7 @@ class BaseTableViewCell: UITableViewCell {
         
         // Long press gesture recognizer
         longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressGesture(gestureRecognizer:)))
-        longPressGestureRecognizer?.minimumPressDuration = 0.2
+        longPressGestureRecognizer?.minimumPressDuration = 0.5
         self.addGestureRecognizer(longPressGestureRecognizer!)
     }
     
@@ -121,7 +121,7 @@ class BaseTableViewCell: UITableViewCell {
                        initialSpringVelocity: 0.4,
                        options: .beginFromCurrentState,
                        animations: {
-                        self.transform = CGAffineTransform(scaleX: 0.96, y: 0.96)
+                        self.transform = CGAffineTransform(scaleX: 0.98, y: 0.98)
         },
                        completion: { (finished) in
                         
