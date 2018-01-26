@@ -30,14 +30,14 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.navigationBar.prefersLargeTitles = true
         
-        let searchButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.search, target: self, action: #selector(searchButtonClicked))
+        let searchButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonClicked))
         navigationItem.rightBarButtonItem = searchButtonItem
         
         // Setup table view
         tableView?.separatorStyle = .none
         tableView?.estimatedRowHeight = 150.0
         tableView?.rowHeight = UITableViewAutomaticDimension
-        tableView?.register(UINib(nibName: "ProjectTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: projectCellIdentifier)
+        tableView?.register(UINib(nibName: "ProjectTableViewCell", bundle: .main), forCellReuseIdentifier: projectCellIdentifier)
         tableView?.allowsSelection = false
         
         // Get all projects
