@@ -40,37 +40,37 @@ public class AlignedImageView: UIImageView {
     // IBInspectable properties
     @IBInspectable public var alignLeft: Bool {
         set {
-            self.setIBInspectableProperty(shouldInsert: newValue, alignmentMask: AlignedImageViewMask.left)
+            self.setIBInspectableProperty(shouldInsert: newValue, alignmentMask: .left)
         }
         get {
-            return self.getIBInspectableProperty(AlignedImageViewMask.left)
+            return self.getIBInspectableProperty(.left)
         }
     }
     
     @IBInspectable public var alignRight: Bool {
         set {
-            self.setIBInspectableProperty(shouldInsert: newValue, alignmentMask: AlignedImageViewMask.right)
+            self.setIBInspectableProperty(shouldInsert: newValue, alignmentMask: .right)
         }
         get {
-            return self.getIBInspectableProperty(AlignedImageViewMask.right)
+            return self.getIBInspectableProperty(.right)
         }
     }
     
     @IBInspectable public var alignTop: Bool {
         set {
-            self.setIBInspectableProperty(shouldInsert: newValue, alignmentMask: AlignedImageViewMask.top)
+            self.setIBInspectableProperty(shouldInsert: newValue, alignmentMask: .top)
         }
         get {
-            return self.getIBInspectableProperty(AlignedImageViewMask.top)
+            return self.getIBInspectableProperty(.top)
         }
     }
     
     @IBInspectable public var alignBottom: Bool {
         set {
-            self.setIBInspectableProperty(shouldInsert: newValue, alignmentMask: AlignedImageViewMask.bottom)
+            self.setIBInspectableProperty(shouldInsert: newValue, alignmentMask: .bottom)
         }
         get {
-            return getIBInspectableProperty(AlignedImageViewMask.bottom)
+            return getIBInspectableProperty(.bottom)
         }
     }
     
@@ -85,7 +85,7 @@ public class AlignedImageView: UIImageView {
         }
     }
     
-    public var alignment: AlignedImageViewMask = AlignedImageViewMask.center {
+    public var alignment: AlignedImageViewMask = .center {
         didSet {
             // Update layout for only AlignedImageViewMask changes
             if alignment != oldValue {
@@ -189,18 +189,18 @@ public class AlignedImageView: UIImageView {
         var frame = CGRect(origin: origin, size: self.contentSize)
         
         // Set X alignment for image frame
-        if alignment.contains(AlignedImageViewMask.left) {
+        if alignment.contains(.left) {
             frame.origin.x = 0.0
         }
-        else if alignment.contains(AlignedImageViewMask.right) {
+        else if alignment.contains(.right) {
             frame.origin.x = bounds.maxX - frame.size.width
         }
         
         // Set Y alignment for image frame
-        if alignment.contains(AlignedImageViewMask.top) {
+        if alignment.contains(.top) {
             frame.origin.y = 0.0
         }
-        else if alignment.contains(AlignedImageViewMask.bottom) {
+        else if alignment.contains(.bottom) {
             frame.origin.y = bounds.maxY - frame.size.height
         }
         

@@ -20,10 +20,9 @@ class VolunteersViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "Volunteers"
         self.navigationController?.navigationBar.prefersLargeTitles = true
         
-        let searchButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.search, target: self, action: #selector(searchButtonClicked))
+        let searchButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonClicked))
         navigationItem.rightBarButtonItem = searchButtonItem
         
         // If we have a custom cell register it here, or you can use the storyboard to design/register the cell
@@ -51,6 +50,10 @@ class VolunteersViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.tableView?.reloadData()
             }
         }*/
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
     }
     
     

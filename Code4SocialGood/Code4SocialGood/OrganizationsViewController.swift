@@ -20,10 +20,9 @@ class OrganizationsViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "Organizations"
         self.navigationController?.navigationBar.prefersLargeTitles = true
         
-        let searchButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.search, target: self, action: #selector(searchButtonClicked))
+        let searchButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonClicked))
         navigationItem.rightBarButtonItem = searchButtonItem
         
         // If we have a custom cell register it here, or you can use the storyboard to design/register the cell
@@ -53,6 +52,9 @@ class OrganizationsViewController: UIViewController, UITableViewDelegate, UITabl
         }*/
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+    }
     
     // MARK: - Button Action Methods
     

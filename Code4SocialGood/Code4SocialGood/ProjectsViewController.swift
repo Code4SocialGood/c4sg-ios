@@ -12,31 +12,32 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     
     // Table view properties
     @IBOutlet weak var tableView: UITableView?
-    let projectCellIdentifier = "ProjectCellIdentifier"
+    private let projectCellIdentifier = "ProjectCellIdentifier"
     
     // Project properties
-    var projects: [Project] = []
+    private var projects: [Project] = []
+    private var selectedProject: Project?
+    
+    // Segue properties
+    private let showProjectDetailsSegue = "ShowProjectDetailsSegue"
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "Projects"
-        
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.navigationBar.prefersLargeTitles = true
-        //navigationItem.largeTitleDisplayMode = .never  // Use this for detailed views
         
-        let searchButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.search, target: self, action: #selector(searchButtonClicked))
+        let searchButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonClicked))
         navigationItem.rightBarButtonItem = searchButtonItem
         
         // Setup table view
         tableView?.separatorStyle = .none
         tableView?.estimatedRowHeight = 150.0
         tableView?.rowHeight = UITableViewAutomaticDimension
-        tableView?.register(UINib(nibName: "ProjectTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: projectCellIdentifier)
+        tableView?.register(UINib(nibName: "ProjectTableViewCell", bundle: .main), forCellReuseIdentifier: projectCellIdentifier)
         tableView?.allowsSelection = false
         
         // Get all projects
@@ -48,6 +49,16 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
             if let projects = projects {
                 self.projects = projects
                 self.tableView?.reloadData()
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == showProjectDetailsSegue {
+            // Pass the project's details to the view contoller
+            if let projectDetailsViewController = segue.destination as? ProjectDetailsViewController, let project = self.selectedProject {
+                projectDetailsViewController.project = project
+                self.selectedProject = nil
             }
         }
     }
@@ -127,7 +138,11 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: - BaseTableViewCellDelegate Methods
     
     func cellDidFinishSingleTap(_ cell: UITableViewCell) {
+        let projectCell: ProjectTableViewCell = cell as! ProjectTableViewCell
+        self.selectedProject = projectCell.project
+        
         // Present the project view in a new view controller here
+        self.performSegue(withIdentifier: showProjectDetailsSegue, sender: self)
     }
     
     func cellDidBeginLongPress(_ cell: UITableViewCell) {
