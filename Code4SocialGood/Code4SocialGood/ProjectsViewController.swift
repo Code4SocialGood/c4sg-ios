@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProjectsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, BaseTableViewCellDelegate {
+class ProjectsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIViewControllerTransitioningDelegate, BaseTableViewCellDelegate {
     
     // Table view properties
     @IBOutlet weak var tableView: UITableView?
@@ -20,6 +20,9 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     
     // Segue properties
     private let showProjectDetailsSegue = "ShowProjectDetailsSegue"
+    
+    // Animation properties
+    private let presentViewControllerAnimator = PresentViewControllerAnimator()
     
     
     override func viewDidLoad() {
@@ -38,7 +41,6 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         tableView?.estimatedRowHeight = 150.0
         tableView?.rowHeight = UITableViewAutomaticDimension
         tableView?.register(UINib(nibName: "ProjectTableViewCell", bundle: .main), forCellReuseIdentifier: projectCellIdentifier)
-        tableView?.allowsSelection = false
         
         // Get all projects
         APIManager.shared.getProjects() { (projects, error) in
@@ -58,6 +60,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
             // Pass the project's details to the view contoller
             if let projectDetailsViewController = segue.destination as? ProjectDetailsViewController, let project = self.selectedProject {
                 projectDetailsViewController.project = project
+                projectDetailsViewController.transitioningDelegate = self
                 self.selectedProject = nil
             }
         }
@@ -134,12 +137,43 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         return UITableViewAutomaticDimension
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! ProjectTableViewCell
+        self.selectedProject = cell.project
+        
+        // Set the cell's card frame
+        let cardFrame = cell.roundedView.convert(cell.roundedView.frame, to: nil)
+        presentViewControllerAnimator.initialFrame = cardFrame
+        presentViewControllerAnimator.toViewControllerType = ProjectDetailsViewController.self
+        
+        // Present the project view in a new view controller here
+        self.performSegue(withIdentifier: showProjectDetailsSegue, sender: self)
+    }
+    
+    
+    // MARK: - UIViewControllerTransitioningDelegate Methods
+    
+    /* Temporarily removing until App Store style animations are fully complete.
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return presentViewControllerAnimator
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return nil
+    }
+     */
+    
     
     // MARK: - BaseTableViewCellDelegate Methods
     
     func cellDidFinishSingleTap(_ cell: UITableViewCell) {
         let projectCell: ProjectTableViewCell = cell as! ProjectTableViewCell
         self.selectedProject = projectCell.project
+
+        // Set the cell's card frame
+        let cardFrame = projectCell.roundedView.convert(projectCell.roundedView.frame, to: nil)
+        presentViewControllerAnimator.initialFrame = cardFrame
+        presentViewControllerAnimator.toViewControllerType = ProjectDetailsViewController.self
         
         // Present the project view in a new view controller here
         self.performSegue(withIdentifier: showProjectDetailsSegue, sender: self)
@@ -152,5 +186,5 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     func cellDidFinishLongPress(_ cell: UITableViewCell) {
         // Display the project preview view for a the project
     }
-    
+
 }

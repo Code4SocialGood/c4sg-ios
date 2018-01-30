@@ -19,20 +19,24 @@ class BaseTableViewCell: UITableViewCell {
     private static let kShadowViewCornerRadius: CGFloat = 14.0
     
     // Rounded card view properties
-    @IBOutlet private weak var roundedView: UIView!
+    @IBOutlet public weak var roundedView: UIView!
     
     // Motion properties
     private let motionManager = CMMotionManager()
     
     // Gesture properties
-    private var longPressGestureRecognizer: UILongPressGestureRecognizer? = nil
-    private var isTapped: Bool = false
+    private let shouldSingleTap: Bool = false // This will override the didSelectRowAt tableview delegate
     private var singleTapGestureRecognizer: UITapGestureRecognizer? = nil
+    private var isTapped: Bool = false
+    private let shouldLongPress: Bool = true
+    private var longPressGestureRecognizer: UILongPressGestureRecognizer? = nil
     private var isLongPressed: Bool = false
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        self.selectionStyle = .none
         
         configureGestureRecognizers()
         
@@ -93,14 +97,18 @@ class BaseTableViewCell: UITableViewCell {
     
     private func configureGestureRecognizers() {
         // Single tap gesture recognizer
-        singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleSingleTapGesture(gestureRecognizer:)))
-        singleTapGestureRecognizer?.numberOfTapsRequired = 1
-        self.addGestureRecognizer(singleTapGestureRecognizer!)
+        if shouldSingleTap {
+            singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleSingleTapGesture(gestureRecognizer:)))
+            singleTapGestureRecognizer?.numberOfTapsRequired = 1
+            self.addGestureRecognizer(singleTapGestureRecognizer!)
+        }
         
         // Long press gesture recognizer
-        longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressGesture(gestureRecognizer:)))
-        longPressGestureRecognizer?.minimumPressDuration = 0.5
-        self.addGestureRecognizer(longPressGestureRecognizer!)
+        if shouldLongPress {
+            longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressGesture(gestureRecognizer:)))
+            longPressGestureRecognizer?.minimumPressDuration = 0.5
+            self.addGestureRecognizer(longPressGestureRecognizer!)
+        }
     }
     
     @objc internal func handleSingleTapGesture(gestureRecognizer: UITapGestureRecognizer) {
