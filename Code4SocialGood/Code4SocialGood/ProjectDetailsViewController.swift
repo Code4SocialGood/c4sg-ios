@@ -66,14 +66,6 @@ class ProjectDetailsViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        // Using this for temporarily removing the view...
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5) {
-            print("To be dismissed...")
-            self.dismiss(animated: true, completion: {
-                print("Dismiss is complete.")
-            })
-        }
     }
     
     
