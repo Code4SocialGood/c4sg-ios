@@ -10,6 +10,9 @@ import UIKit
 
 class ProjectTableViewCell: BaseTableViewCell {
     
+    // Public properties
+    public static let nibName = "ProjectTableViewCell"
+    
     // Private properties
     let defaultImageName = "C4SGLogoDark"
     @IBOutlet private weak var projectImageView: AlignedImageView!
@@ -20,33 +23,31 @@ class ProjectTableViewCell: BaseTableViewCell {
     public weak var project: Project? = nil {
         didSet {
             if let project = project {
-                DispatchQueue.main.async {
-                    // Set project name
-                    if let name = project.name {
-                        self.projectName.text = name
-                    }
-                    else if let name = project.id {
-                        self.projectName.text = "Project \(String(name))"
-                    }
-                    else {
-                        self.projectName.text = "No project name"
-                    }
-                    
-                    // Set project image
-                    if let imageUrl = project.imageUrl {
-                        self.projectImageView.loadAsyncImageFrom(url: imageUrl, withPlaceholder: UIImage(named: self.defaultImageName))
-                    }
-                    else {
-                        self.projectImageView.image = UIImage(named: self.defaultImageName)!
-                    }
-                    
-                    // Set project description
-                    if let description = project.projectDescription {
-                        self.projectDescription.text = description
-                    }
-                    else {
-                        self.projectDescription.text = "No project description"
-                    }
+                // Set project name
+                if let name = project.name {
+                    projectName.text = name
+                }
+                else if let name = project.id {
+                    projectName.text = "Project \(String(name))"
+                }
+                else {
+                    projectName.text = "No project name"
+                }
+                
+                // Set project image
+                if let imageUrl = project.imageUrl {
+                    projectImageView.loadAsyncImageFrom(url: imageUrl, withPlaceholder: UIImage(named: defaultImageName))
+                }
+                else {
+                    projectImageView.image = UIImage(named: defaultImageName)!
+                }
+                
+                // Set project description
+                if let description = project.projectDescription {
+                    projectDescription.text = description
+                }
+                else {
+                    projectDescription.text = "No project description"
                 }
             }
             else {
