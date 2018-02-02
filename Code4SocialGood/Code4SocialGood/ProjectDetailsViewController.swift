@@ -10,6 +10,13 @@ import UIKit
 
 class ProjectDetailsViewController: UIViewController {
 
+    // Container properties
+    @IBOutlet private weak var contentContainerView: UIView!
+    @IBOutlet private weak var containerLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var containerTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var containerTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var containerBottomConstraint: NSLayoutConstraint!
+    
     // View properties
     @IBOutlet private weak var projectImageView: AlignedImageView?
     @IBOutlet private weak var projectNameLabel: UILabel?
@@ -34,7 +41,42 @@ class ProjectDetailsViewController: UIViewController {
         self.navigationItem.title = "Project"
         self.navigationItem.largeTitleDisplayMode = .never
         
+        /* Temporarily removing until App Store style animations are fully complete.
+        self.view.backgroundColor = UIColor.clear
+        self.view.isOpaque = false
+         */
+        
+        // For iPad (commented out until more focus is set for iPad design
+        /*
+        contentContainerView.layer.cornerRadius = 14
+        contentContainerView.layer.shadowColor = UIColor.darkGray.cgColor
+        contentContainerView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        contentContainerView.layer.shadowOpacity = 0.15
+        contentContainerView.layer.shadowRadius = 8.0 */
+ 
+        // Create the subview blur effect to feel more like a card
+        let blur: UIBlurEffect = UIBlurEffect(style: UIBlurEffectStyle.regular)
+        let effectView: UIVisualEffectView = UIVisualEffectView (effect: blur)
+        effectView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        effectView.frame = self.view.frame
+        self.view.insertSubview(effectView, at: 0)
+        
         displayProjectDetails()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    
+    // MARK: - Public Constraint Methods
+    
+    public func positionContainer(left: CGFloat, right: CGFloat, top: CGFloat, bottom: CGFloat) {
+        containerLeadingConstraint.constant = left
+        containerTrailingConstraint.constant = right
+        containerTopConstraint.constant = top
+        containerBottomConstraint.constant = bottom
+        self.view.layoutIfNeeded()
     }
     
     

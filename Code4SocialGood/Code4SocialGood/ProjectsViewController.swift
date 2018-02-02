@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProjectsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, BaseTableViewCellDelegate {
+class ProjectsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, BaseTableViewCellDelegate, UIViewControllerTransitioningDelegate {
     
     // Table view properties
     @IBOutlet weak var tableView: UITableView?
@@ -18,8 +18,9 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     private var projects: [Project] = []
     private var selectedProject: Project?
     
-    // Segue properties
+    // Segue & segue animation properties
     private let showProjectDetailsSegue = "ShowProjectDetailsSegue"
+    private let presentViewControllerAnimator = PresentViewControllerAnimator()
     
     
     override func viewDidLoad() {
@@ -37,8 +38,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         tableView?.separatorStyle = .none
         tableView?.estimatedRowHeight = 150.0
         tableView?.rowHeight = UITableViewAutomaticDimension
-        tableView?.register(UINib(nibName: "ProjectTableViewCell", bundle: .main), forCellReuseIdentifier: projectCellIdentifier)
-        tableView?.allowsSelection = false
+        tableView?.register(UINib(nibName: ProjectTableViewCell.nibName, bundle: .main), forCellReuseIdentifier: projectCellIdentifier)
         
         // Get all projects
         APIManager.shared.getProjects() { (projects, error) in
@@ -55,9 +55,10 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == showProjectDetailsSegue {
-            // Pass the project's details to the view contoller
+            // Pass the project's details to the view controller
             if let projectDetailsViewController = segue.destination as? ProjectDetailsViewController, let project = self.selectedProject {
                 projectDetailsViewController.project = project
+                projectDetailsViewController.transitioningDelegate = self
                 self.selectedProject = nil
             }
         }
@@ -134,12 +135,30 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         return UITableViewAutomaticDimension
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! ProjectTableViewCell
+        self.selectedProject = cell.project
+        
+        // Set the cell's card frame
+        let cardFrame = cell.roundedView.convert(cell.roundedView.frame, to: nil)
+        presentViewControllerAnimator.initialFrame = cardFrame
+        presentViewControllerAnimator.toViewControllerType = ProjectDetailsViewController.self
+        
+        // Present the project view in a new view controller here
+        self.performSegue(withIdentifier: showProjectDetailsSegue, sender: self)
+    }
+    
     
     // MARK: - BaseTableViewCellDelegate Methods
     
     func cellDidFinishSingleTap(_ cell: UITableViewCell) {
         let projectCell: ProjectTableViewCell = cell as! ProjectTableViewCell
         self.selectedProject = projectCell.project
+        
+        // Set the cell's card frame
+        let cardFrame = projectCell.roundedView.convert(projectCell.roundedView.frame, to: nil)
+        presentViewControllerAnimator.initialFrame = cardFrame
+        presentViewControllerAnimator.toViewControllerType = ProjectDetailsViewController.self
         
         // Present the project view in a new view controller here
         self.performSegue(withIdentifier: showProjectDetailsSegue, sender: self)
@@ -151,6 +170,19 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func cellDidFinishLongPress(_ cell: UITableViewCell) {
         // Display the project preview view for a the project
+    }
+    
+    
+    // MARK: - UIViewControllerTransitioningDelegate Methods
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        /* Temporarily removing until App Store style animations are fully complete. */
+        //return presentViewControllerAnimator
+        return nil
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return nil
     }
     
 }

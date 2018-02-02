@@ -10,6 +10,9 @@ import UIKit
 
 class ProjectTableViewCell: BaseTableViewCell {
     
+    // Public properties
+    public static let nibName = "ProjectTableViewCell"
+    
     // Private properties
     let defaultImageName = "C4SGLogoDark"
     @IBOutlet private weak var projectImageView: AlignedImageView!
