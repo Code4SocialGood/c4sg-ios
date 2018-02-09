@@ -35,8 +35,10 @@ class ProjectTableViewCell: BaseTableViewCell {
                 }
                 
                 // Set project image
-                if let imageUrl = project.imageUrl {
-                    projectImageView.loadAsyncImageFrom(url: imageUrl, withPlaceholder: UIImage(named: defaultImageName))
+                if let imageUrl = project.organizationLogoUrl {
+                    DispatchQueue.main.async {
+                        self.projectImageView.loadAsyncImageFrom(url: imageUrl, withPlaceholder: UIImage(named: self.defaultImageName))
+                    }
                 }
                 else {
                     projectImageView.image = UIImage(named: defaultImageName)!

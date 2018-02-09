@@ -34,6 +34,9 @@
 		B654618D2018F62B000A9069 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B654618C2018F62B000A9069 /* UIView.swift */; };
 		B6597798200669C10073AE21 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6597797200669C10073AE21 /* CoreDataManager.swift */; };
 		B659779B20067C300073AE21 /* EntityObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B659779A20067C300073AE21 /* EntityObjectMapper.swift */; };
+		B65CD3D9202B973100B1F2BD /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65CD3D8202B973100B1F2BD /* UIColor.swift */; };
+		B65CD3DD202BA95D00B1F2BD /* DismissViewControllerAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65CD3DC202BA95D00B1F2BD /* DismissViewControllerAnimator.swift */; };
+		B66ECCE2202B809E000A89D3 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66ECCE1202B809E000A89D3 /* RoundButton.swift */; };
 		B66F3A74201924F500B0A321 /* ProjectDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66F3A73201924F500B0A321 /* ProjectDetailsViewController.swift */; };
 		B68DA8272018D4E500166C5D /* AlignedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68DA8262018D4E500166C5D /* AlignedImageView.swift */; };
 		B6C0DB0D200503DD00950769 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C0DB0C200503DD00950769 /* Organization.swift */; };
@@ -77,6 +80,9 @@
 		B654618C2018F62B000A9069 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		B6597797200669C10073AE21 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		B659779A20067C300073AE21 /* EntityObjectMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityObjectMapper.swift; sourceTree = "<group>"; };
+		B65CD3D8202B973100B1F2BD /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		B65CD3DC202BA95D00B1F2BD /* DismissViewControllerAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissViewControllerAnimator.swift; sourceTree = "<group>"; };
+		B66ECCE1202B809E000A89D3 /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		B66F3A73201924F500B0A321 /* ProjectDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailsViewController.swift; sourceTree = "<group>"; };
 		B68DA8262018D4E500166C5D /* AlignedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignedImageView.swift; sourceTree = "<group>"; };
 		B6C0DB0C200503DD00950769 /* Organization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
@@ -188,6 +194,7 @@
 		B63A45052017E62900324AE6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B65CD3D8202B973100B1F2BD /* UIColor.swift */,
 				B63A45032017E62400324AE6 /* UIImageView.swift */,
 				B654618C2018F62B000A9069 /* UIView.swift */,
 			);
@@ -234,6 +241,7 @@
 				B647DFA620164C250031D196 /* BaseTableViewCell.swift */,
 				B647DFA820164F540031D196 /* ProjectTableViewCell.swift */,
 				B647DFA920164F540031D196 /* ProjectTableViewCell.xib */,
+				B66ECCE1202B809E000A89D3 /* RoundButton.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -244,6 +252,7 @@
 				B641BAD82009299400699C2F /* CustomError.swift */,
 				B6C0DB0C200503DD00950769 /* Organization.swift */,
 				B6E77D16201F82D800ECA20A /* PresentViewControllerAnimator.swift */,
+				B65CD3DC202BA95D00B1F2BD /* DismissViewControllerAnimator.swift */,
 				B6C0DB0E2005068F00950769 /* Project.swift */,
 				B63D0ED82005087500A594A5 /* Skill.swift */,
 				B6C0DB12200507F400950769 /* Story.swift */,
@@ -417,13 +426,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B66ECCE2202B809E000A89D3 /* RoundButton.swift in Sources */,
 				B6E77D17201F82D900ECA20A /* PresentViewControllerAnimator.swift in Sources */,
 				188174811FFD45F300175527 /* OrganizationsViewController.swift in Sources */,
 				B62F90C3200D5ABC00017405 /* TypingLabel.swift in Sources */,
 				1881747D1FFD45F300175527 /* AppDelegate.swift in Sources */,
+				B65CD3D9202B973100B1F2BD /* UIColor.swift in Sources */,
 				1860C65420069D12001D08D5 /* OrganizationProtocol.swift in Sources */,
 				B6D99A66200514D600092E2F /* APIManager.swift in Sources */,
 				1860C65620069D39001D08D5 /* SkillProtocol.swift in Sources */,
+				B65CD3DD202BA95D00B1F2BD /* DismissViewControllerAnimator.swift in Sources */,
 				B654618B2018F3BE000A9069 /* PaddedLabel.swift in Sources */,
 				1860C65820069D5D001D08D5 /* StoryProtocol.swift in Sources */,
 				B647DFAA20164F540031D196 /* ProjectTableViewCell.swift in Sources */,
