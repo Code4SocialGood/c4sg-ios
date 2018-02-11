@@ -21,6 +21,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     // Segue & segue animation properties
     private let showProjectDetailsSegue = "ShowProjectDetailsSegue"
     private let presentViewControllerAnimator = PresentViewControllerAnimator()
+    private let dismissViewControllerAnimator = DismissViewControllerAnimator()
     
     
     override func viewDidLoad() {
@@ -140,7 +141,9 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         self.selectedProject = cell.project
         
         // Set the cell's card frame
-        let cardFrame = cell.roundedView.convert(cell.roundedView.frame, to: nil)
+        /* Use the cardFrame as the initial frame if you wish to bring to view up from the cell location */
+        let rectForRow = tableView.rectForRow(at: indexPath)
+        let cardFrame = tableView.convert(rectForRow, to: tableView.superview)
         presentViewControllerAnimator.initialFrame = cardFrame
         presentViewControllerAnimator.toViewControllerType = ProjectDetailsViewController.self
         
@@ -156,8 +159,10 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         self.selectedProject = projectCell.project
         
         // Set the cell's card frame
-        let cardFrame = projectCell.roundedView.convert(projectCell.roundedView.frame, to: nil)
-        presentViewControllerAnimator.initialFrame = cardFrame
+        /* Use the cardFrame as the initial frame if you wish to bring to view up from the cell location
+         let cardFrame = cell.roundedView.convert(projectCell.roundedView.frame, to: nil)
+         presentViewControllerAnimator.initialFrame = cardFrame
+        */
         presentViewControllerAnimator.toViewControllerType = ProjectDetailsViewController.self
         
         // Present the project view in a new view controller here
@@ -176,13 +181,12 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: - UIViewControllerTransitioningDelegate Methods
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        /* Temporarily removing until App Store style animations are fully complete. */
-        //return presentViewControllerAnimator
-        return nil
+        return presentViewControllerAnimator
+//        return nil
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return nil
+        return dismissViewControllerAnimator
     }
     
 }

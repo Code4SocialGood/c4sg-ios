@@ -62,7 +62,7 @@ class PresentViewControllerAnimator: NSObject, UIViewControllerAnimatedTransitio
         containerView.addSubview(toViewController.view)
         
         // Get the to view controller's frame or constraints (To keep this animator generic, we're using frames here)
-        let toViewControllerOldFrame = CGRect(x: 0, y: initialFrame.origin.y, width: initialFrame.size.width, height: initialFrame.size.height)
+        let toViewControllerOldFrame = CGRect(x: initialFrame.origin.x, y: initialFrame.origin.y, width: initialFrame.size.width, height: initialFrame.size.height)
         let toViewControllerNewFrame = toViewController.view.frame
         
         // Get the to new view controller's frame or constraints
