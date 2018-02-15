@@ -9,7 +9,7 @@
 import UIKit
 
 class ProjectDetailsViewController: UIViewController, UIScrollViewDelegate {
-
+    
     // Container properties
     var effectView: UIVisualEffectView!
     @IBOutlet private weak var contentContainerView: UIView!
@@ -19,16 +19,20 @@ class ProjectDetailsViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet private weak var containerBottomConstraint: NSLayoutConstraint!
     
     // View properties
-    @IBOutlet private weak var scrollView: UIScrollView?
     var closeButton: RoundButton!
+    @IBOutlet private weak var scrollView: UIScrollView?
+    @IBOutlet private weak var scrollViewSubView: UIView?
     @IBOutlet private weak var projectHeaderImageView: UIImageView?
     @IBOutlet private weak var projectHeaderImageViewHeight: NSLayoutConstraint?
     @IBOutlet private weak var projectImageView: AlignedImageView?
     @IBOutlet private weak var projectNameLabel: UILabel?
-    @IBOutlet private weak var projectCategoryLabel: UILabel?
     @IBOutlet private weak var projectLocationLabel: UILabel?
     @IBOutlet private weak var projectPostedLabel: UILabel?
     @IBOutlet private weak var projectDescriptionTextView: UITextView?
+    @IBOutlet private weak var bottomView: UIView?
+    @IBOutlet private weak var bottomViewBottomConstraint: NSLayoutConstraint?
+    @IBOutlet private weak var applyButton: UIButton?
+    @IBOutlet private weak var shareButton: UIButton?
     private let defaultImageName = "C4SGLogoDark"
     private let defaultHeaderImageName = "BackgroundChild"
     
@@ -42,7 +46,7 @@ class ProjectDetailsViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.navigationItem.title = "Project"
         self.navigationItem.largeTitleDisplayMode = .never
         
@@ -66,12 +70,17 @@ class ProjectDetailsViewController: UIViewController, UIScrollViewDelegate {
         contentContainerView.layer.shadowOffset = CGSize(width: 0, height: 0)
         contentContainerView.layer.shadowOpacity = 0.15
         contentContainerView.layer.shadowRadius = 8.0
-        */
+        positionContainer(left: 40.0, right: 40.0, top: 40.0, bottom: 40.0)
+         */
         
+        // Setup close button
         addCloseButton()
         
+        // Setup bottom view
+        setupBottomView()
+        
         // Setup scrollView properties
-        scrollView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
+        scrollView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0)
         scrollView?.delegate = self
         
         // Setup the project header image
@@ -83,6 +92,19 @@ class ProjectDetailsViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        // Animate bottom view up
+        bottomViewBottomConstraint?.constant = 10.0
+        UIView.animate(withDuration: 1.0,
+                       delay: 1.0,
+                       usingSpringWithDamping: 0.75,
+                       initialSpringVelocity: 5.0,
+                       options: .curveEaseIn,
+                       animations: {
+                        self.bottomView?.transform = CGAffineTransform(scaleX: 1, y: 1)
+                        self.view.layoutIfNeeded()
+        },
+                       completion: nil)
     }
     
     
@@ -129,23 +151,49 @@ class ProjectDetailsViewController: UIViewController, UIScrollViewDelegate {
                 projectNameLabel?.text = "No project name"
             }
             
-            // Set project category
-            projectCategoryLabel?.text = "No project category"
-            
             // Set project location
-            if let location = project.city {
-                projectLocationLabel?.text = location
+            if let city = project.city, let state = project.state {
+                var location = ""
+                if city != "" {
+                    location += city
+                }
+                if state != "" {
+                    if location != "" {
+                        location += ", " + state
+                    }
+                    else {
+                        location = state
+                    }
+                }
+                
+                if location != "" {
+                    projectLocationLabel?.text = location
+                }
+                else {
+                    if let organizationName = project.organizationName, organizationName != "" {
+                        projectLocationLabel?.text = organizationName
+                    }
+                }
             }
             else {
-                projectLocationLabel?.text = "No project location"
+                projectLocationLabel?.text = ""
             }
             
             // Set project posted date
-            if let createdTime = project.createdTime {
-                projectPostedLabel?.text = createdTime
+            if let createdTimeString = project.createdTime {
+                let inputDateFormatter = DateFormatter()
+                inputDateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.S"
+                if let createdTimeDate = inputDateFormatter.date(from: createdTimeString) {
+                    let outputDateFormatter = DateFormatter()
+                    outputDateFormatter.dateFormat = "MMM d, yyyy"
+                    projectPostedLabel?.text = outputDateFormatter.string(from: createdTimeDate)
+                }
+                else {
+                    projectPostedLabel?.text = ""
+                }
             }
             else {
-                projectPostedLabel?.text = "No project date"
+                projectPostedLabel?.text = ""
             }
             
             // Set project description
@@ -174,7 +222,7 @@ class ProjectDetailsViewController: UIViewController, UIScrollViewDelegate {
         closeButton.backgroundColor = UIColor.darkGray
         closeButton.setTitle(" X ", for: .normal)
         closeButton.setTitleColor(UIColor.white, for: .normal)
-        closeButton.titleLabel?.font = UIFont.systemFont(ofSize: 15.0)
+        closeButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
         closeButton.addTarget(self, action: #selector(closeButtonClicked), for: .touchUpInside)
         self.view.addSubview(closeButton)
         
@@ -185,26 +233,75 @@ class ProjectDetailsViewController: UIViewController, UIScrollViewDelegate {
         // Vertical constraints
         closeButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 8.0).isActive = true
         closeButton.heightAnchor.constraint(equalToConstant: buttonWidth).isActive = true
+        
+        // Test and change button colors
+        changeCloseButtonBackgroundColor(scrollOffset: nil)
     }
     
-    private func changeCloseButtonBackgroundColor() {
-        // TODO: Need to test background color to make the close button pop more
-        /*
-        let point = closeButton.center
-        let color = self.view.getColorAtPoint(point)
-        if color.isLight() {
-            closeButton.setTitleColor(UIColor.white, for: .normal)
-            closeButton.backgroundColor = UIColor.darkGray
+    private func changeCloseButtonBackgroundColor(scrollOffset: CGFloat?) {
+        if let headerImageViewHeight = projectHeaderImageViewHeight, let scrollOffset = scrollOffset {
+            if (scrollOffset + closeButton.frame.size.height) > headerImageViewHeight.constant {
+                // Button is over the white space
+                UIView.animate(withDuration: 0.3, animations: {
+                    self.closeButton.backgroundColor = UIColor.darkGray
+                    self.closeButton.borderColor = UIColor.lightGray
+                })
+            }
+            else {
+                // Button is over the header image
+                UIView.animate(withDuration: 0.3, animations: {
+                    self.closeButton.backgroundColor = UIColor.lightGray
+                    self.closeButton.borderColor = UIColor.gray
+                })
+            }
         }
         else {
-            closeButton.setTitleColor(UIColor.white, for: .normal)
-            closeButton.backgroundColor = UIColor.darkGray
-        } */
+            // Button is over the header image
+            closeButton.backgroundColor = UIColor.lightGray
+            closeButton.borderColor = UIColor.gray
+        }
     }
     
     @objc func closeButtonClicked() {
+        UIView.animate(withDuration: 0.15, animations: {
+            self.closeButton?.alpha = 0.0
+            self.bottomView?.alpha = 0.0
+        })
+        
         self.effectView.removeFromSuperview()
+        self.scrollView?.setContentOffset(.zero, animated: true)
+        
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    // MARK: - Bottom View / Button Methods
+    
+    private func setupBottomView() {
+        bottomView?.backgroundColor = UIColor(white: 0.98, alpha: 0.85)
+        bottomView?.transform = CGAffineTransform(scaleX: 0.90, y: 0.90)
+        bottomView?.layer.cornerRadius = 8.0
+        bottomView?.layer.masksToBounds = false
+        bottomView?.layer.shadowColor = UIColor.darkGray.cgColor
+        bottomView?.layer.shadowOffset = CGSize(width: 0, height: 0)
+        bottomView?.layer.shadowOpacity = 0.25
+        bottomView?.layer.shadowRadius = 8.0
+        bottomView?.layer.shadowPath = UIBezierPath(roundedRect: bottomView!.bounds, cornerRadius: 8.0).cgPath
+        bottomViewBottomConstraint?.constant = -150.0
+        
+        applyButton?.tintColor = UIColor.c4sgGreen()
+        applyButton?.backgroundColor = UIColor(white: 0.96, alpha: 1.0)
+        applyButton?.layer.borderWidth = 2.0
+        applyButton?.layer.borderColor = UIColor.c4sgGreen().cgColor
+        applyButton?.layer.cornerRadius = 8
+        
+        shareButton?.tintColor = UIColor.c4sgGreen()
+        shareButton?.backgroundColor = UIColor(white: 0.96, alpha: 1.0)
+        shareButton?.setImage(UIImage(named: "ShareIcon"), for: UIControlState.normal)
+        shareButton?.update(titlePosition: UIViewContentMode.right, titleSpacing: 0, imageSpacing: 6.0, state: UIControlState.normal)
+        shareButton?.layer.borderWidth = 2.0
+        shareButton?.layer.borderColor = UIColor.c4sgGreen().cgColor
+        shareButton?.layer.cornerRadius = 8
     }
     
     
@@ -218,10 +315,25 @@ class ProjectDetailsViewController: UIViewController, UIScrollViewDelegate {
             self.scrollView?.transform = CGAffineTransform(scaleX: scale, y: scale)
             self.scrollView?.showsVerticalScrollIndicator = false
             
+            // Set corner radius for scroll view
+            let maxRadius: CGFloat = 20.0
+            var radius: CGFloat = ((maxRadius / scale) - maxRadius) * 10
+            if radius > maxRadius {
+                radius = maxRadius
+            }
+            self.scrollView?.layer.cornerRadius = radius
+            self.scrollViewSubView?.layer.cornerRadius = radius
+            self.scrollViewSubView?.layer.masksToBounds = true
+            
             // Change alpha to other items on content view
             if let button = self.closeButton, button.alpha > CGFloat(0) {
                 UIView.animate(withDuration: 0.3, animations: {
                     button.alpha = 0.0
+                })
+            }
+            if let bottomView = self.bottomView, bottomView.alpha > CGFloat(0) {
+                UIView.animate(withDuration: 0.3, animations: {
+                    bottomView.alpha = 0.0
                 })
             }
             self.effectView.alpha = scale
@@ -229,6 +341,7 @@ class ProjectDetailsViewController: UIViewController, UIScrollViewDelegate {
             // Test when to close the view
             if scrollOffset < -90 {
                 self.closeButton?.removeFromSuperview()
+                self.bottomView?.removeFromSuperview()
                 self.effectView.removeFromSuperview()
                 
                 self.dismiss(animated: true, completion: nil)
@@ -237,13 +350,20 @@ class ProjectDetailsViewController: UIViewController, UIScrollViewDelegate {
         else {
             // Reset scroll view details
             self.scrollView?.showsVerticalScrollIndicator = true
+            self.scrollViewSubView?.layer.masksToBounds = false
+            self.scrollView?.layer.cornerRadius = 0
+            self.scrollViewSubView?.layer.cornerRadius = 0
             
             // Reset details of items on content view
             UIView.animate(withDuration: 0.3, animations: {
                 self.closeButton?.alpha = 1.0
+                self.bottomView?.alpha = 1.0
                 self.effectView.alpha = 1.0
             })
         }
+        
+        // Do the close button visual logic
+        changeCloseButtonBackgroundColor(scrollOffset: scrollOffset)
     }
     
 }

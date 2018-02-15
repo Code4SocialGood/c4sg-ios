@@ -329,8 +329,8 @@ class APIManager: NSObject, OrganizationProtocol, ProjectProtocol, SkillProtocol
                             }
                         }
                         
-                        // Sort the array we just set
-                        projects = projects.sorted(by: { $0.id < $1.id })
+                        // Sort the array we just set by date created
+                        projects = projects.sorted(by: { $0.createdTime! > $1.createdTime! })
                         
                         complete(projects, nil)
                     }
