@@ -31,7 +31,8 @@ extension UIImageView {
         }
         
         // Download and set the image
-        URLSession.shared.dataTask(with: requestURL) { (data, response, error) in
+        let request: URLRequest = URLRequest.init(url: requestURL, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 30.0)
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
             DispatchQueue.main.async { [weak self] in
                 if error == nil {
                     if let imageData = data {

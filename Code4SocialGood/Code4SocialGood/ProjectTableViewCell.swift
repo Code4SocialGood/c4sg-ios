@@ -35,13 +35,13 @@ class ProjectTableViewCell: BaseTableViewCell {
                 }
                 
                 // Set project image
-                if let imageUrl = project.organizationLogoUrl {
-                    DispatchQueue.main.async {
+                DispatchQueue.main.async {
+                    if let imageUrl = project.organizationLogoUrl {
                         self.projectImageView.loadAsyncImageFrom(url: imageUrl, withPlaceholder: UIImage(named: self.defaultImageName))
                     }
-                }
-                else {
-                    projectImageView.image = UIImage(named: defaultImageName)!
+                    else {
+                        self.projectImageView.image = UIImage(named: self.defaultImageName)!
+                    }
                 }
                 
                 // Set project description

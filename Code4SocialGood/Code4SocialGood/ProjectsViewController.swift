@@ -20,8 +20,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     
     // Segue & segue animation properties
     private let showProjectDetailsSegue = "ShowProjectDetailsSegue"
-    private let presentViewControllerAnimator = PresentViewControllerAnimator()
-    private let dismissViewControllerAnimator = DismissViewControllerAnimator()
+    private let viewControllerAnimator = ViewControllerAnimator()
     
     
     override func viewDidLoad() {
@@ -141,11 +140,9 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         self.selectedProject = cell.project
         
         // Set the cell's card frame
-        /* Use the cardFrame as the initial frame if you wish to bring to view up from the cell location */
         let rectForRow = tableView.rectForRow(at: indexPath)
-        let cardFrame = tableView.convert(rectForRow, to: tableView.superview)
-        presentViewControllerAnimator.initialFrame = cardFrame
-        presentViewControllerAnimator.toViewControllerType = ProjectDetailsViewController.self
+        let cellFrame = tableView.convert(rectForRow, to: tableView.superview)
+        viewControllerAnimator.initialFrame = cellFrame
         
         // Present the project view in a new view controller here
         self.performSegue(withIdentifier: showProjectDetailsSegue, sender: self)
@@ -160,10 +157,9 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         
         // Set the cell's card frame
         /* Use the cardFrame as the initial frame if you wish to bring to view up from the cell location
-         let cardFrame = cell.roundedView.convert(projectCell.roundedView.frame, to: nil)
-         presentViewControllerAnimator.initialFrame = cardFrame
+         let cellFrame = cell.roundedView.convert(projectCell.roundedView.frame, to: nil)
+         viewControllerAnimator.initialFrame = cellFrame
         */
-        presentViewControllerAnimator.toViewControllerType = ProjectDetailsViewController.self
         
         // Present the project view in a new view controller here
         self.performSegue(withIdentifier: showProjectDetailsSegue, sender: self)
@@ -181,12 +177,13 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: - UIViewControllerTransitioningDelegate Methods
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return presentViewControllerAnimator
-//        return nil
+        viewControllerAnimator.presenting = true
+        return viewControllerAnimator
     }
-    
+
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return dismissViewControllerAnimator
+        viewControllerAnimator.presenting = false
+        return viewControllerAnimator
     }
     
 }
